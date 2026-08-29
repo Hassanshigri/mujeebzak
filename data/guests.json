@@ -12,5 +12,11 @@
     "salutation": "Sample Family",
     "adults": 4,
     "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
+  },
+  "ahmed-family-06": {
+    "name": "The Ahmed Family",
+    "salutation": "Ahmed Family",
+    "adults": 6,
+    "events": ["mehndi", "nikkah", "valima"]
   }
 }
