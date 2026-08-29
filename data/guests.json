@@ -1,0 +1,16 @@
+{
+  "_readme": "One entry per invite. The key is the slug used in the link: /?invite=anwar-dhanani-22 . 'events' lists which celebration ids this guest is invited to (ids come from wedding.config.js).",
+
+  "anwar-dhanani-22": {
+    "name": "Mrs. & Mr. Anwar Dhanani",
+    "salutation": "Anwar Dhanani",
+    "adults": 2,
+    "events": ["nikkah", "valima"]
+  },
+  "sample-family-04": {
+    "name": "The Sample Family",
+    "salutation": "Sample Family",
+    "adults": 4,
+    "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
+  }
+}

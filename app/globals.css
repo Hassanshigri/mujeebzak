@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Cormorant Garamond", serif;
+  --font-caps: "Cinzel", serif;
+  --font-arabic: "Amiri", serif;
+  --font-urdu: "Noto Nastaliq Urdu", serif;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: #1A0508;
+  color: #F3EADA;
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- reusable pieces -------------------------------------------------- */
+@layer components {
+  .kicker {
+    @apply font-caps text-[10px] sm:text-xs uppercase tracking-widest2 text-gold/80;
+  }
+  .panel {
+    @apply relative rounded-sm border border-gold/25 bg-forest/85 backdrop-blur-sm;
+    box-shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.95),
+                inset 0 0 0 1px rgba(201, 162, 75, 0.08);
+  }
+  .btn-gold {
+    @apply font-caps text-[11px] sm:text-xs uppercase tracking-widest2 text-goldlt
+           border border-gold/60 rounded-full px-8 py-4 transition-all duration-500
+           hover:bg-gold hover:text-ink hover:border-gold;
+  }
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/45 to-transparent;
+  }
+  .field-label {
+    @apply font-caps text-[9px] uppercase tracking-widest2 text-gold/70;
+  }
+}
+
+/* Ornamental corner flourish on panels */
+.corner::before, .corner::after {
+  content: "";
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 1px solid rgba(201, 162, 75, 0.5);
+}
+.corner::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+.corner::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+/* Subtle islamic-geometry texture, pure CSS so no image asset is required */
+.geo-bg {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(110, 27, 36, 0.55), transparent 60%),
+    repeating-conic-gradient(from 45deg at 50% 50%,
+      rgba(201,162,75,0.05) 0deg 15deg, transparent 15deg 30deg);
+  background-size: 100% 100%, 220px 220px;
+}
+
+[dir="rtl"] { font-family: var(--font-urdu); }
+[dir="rtl"] .font-caps { letter-spacing: 0; }
+
+::selection { background: #C9A24B; color: #1A0508; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1A0508; }
+::-webkit-scrollbar-thumb { background: #6E1B24; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
