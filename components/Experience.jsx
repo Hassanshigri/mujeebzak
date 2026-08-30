@@ -5,6 +5,7 @@ import { getGuest } from "@/data/guests";
 import { events as allEvents, site } from "@/data/wedding.config";
 import { t as strings } from "@/data/i18n";
 import GateScreen from "./GateScreen";
+import TransitionScreen from "./TransitionScreen";
 import InvitationScreen from "./InvitationScreen";
 import CelebrationsScreen from "./CelebrationsScreen";
 import Controls from "./Controls";
@@ -15,7 +16,7 @@ export default function Experience() {
   const guest = useMemo(() => getGuest(slug), [slug]);
 
   const [lang, setLang] = useState("en");
-  const [stage, setStage] = useState("gate"); // gate | invitation | celebrations
+  const [stage, setStage] = useState("gate"); // gate | transition | invitation | celebrations
   const t = strings[lang];
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Experience() {
   if (!guest) {
     return (
       <main className="min-h-[100dvh] geo-bg grid place-items-center px-6 text-center">
-        <div className="panel corner max-w-md px-8 py-14">
+        <div className="panel corner max-w-md px-8 py-14 animate-glassIn">
           <p className="font-display text-goldlt text-3xl">{t.notFoundTitle}</p>
           <p className="text-muted mt-4 leading-relaxed">{t.notFoundBody}</p>
           <p className="font-caps text-[9px] tracking-widest2 text-muted/40 mt-10">
@@ -49,7 +50,10 @@ export default function Experience() {
   return (
     <main>
       <Controls lang={lang} setLang={setLang} t={t} playMusic={stage !== "gate"} />
-      {stage === "gate" && <GateScreen t={t} onEnter={() => setStage("invitation")} />}
+      {stage === "gate" && <GateScreen t={t} onEnter={() => setStage("transition")} />}
+      {stage === "transition" && (
+        <TransitionScreen onDone={() => setStage("invitation")} />
+      )}
       {stage === "invitation" && (
         <InvitationScreen t={t} guest={guest} onDiscover={() => setStage("celebrations")} />
       )}
