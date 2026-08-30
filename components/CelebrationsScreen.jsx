@@ -77,34 +77,49 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
       {/* closing */}
       <section className="relative overflow-hidden py-28 px-4">
         <Image src={backgrounds.closing} alt="" fill sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/25 to-ink/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/65 via-ink/35 to-ink/75" />
 
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <p className="font-arabic text-goldlt text-3xl">{scripture.thanks}</p>
-          <h3 className="font-display text-cream text-4xl mt-6">{t.withLove}</h3>
-          <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed">
-            {notes.gratitude}
-          </p>
-          <p className="font-display text-goldlt text-4xl mt-8">
-            {site.brideFirst} <span className="text-gold">&</span> {site.groomFirst}
-          </p>
-
-          <Divider className="my-12" />
-
-          <p className="kicker">{t.gentleNote}</p>
-          <p className="text-cream/85 mt-3 max-w-md mx-auto">{notes.giftNote}</p>
-
-          <div className="mt-16">
-            <Monogram initials={site.monogram} size={72} />
-            <p className="font-caps text-[9px] tracking-widest2 text-muted/60 mt-6">
-              {t.craftedBy}
+        <div className="relative z-10 mx-auto max-w-2xl">
+          {/* Soft scrim behind the text — the photo alone isn't dark enough
+              everywhere for reliable contrast, so give the words their own
+              backing without turning it into a hard-edged card. */}
+          <div
+            className="rounded-[2.5rem] backdrop-blur-md px-8 sm:px-16 py-14 sm:py-16 text-center"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(26,5,8,.72), rgba(26,5,8,.4) 72%, transparent 100%)",
+            }}
+          >
+            <p className="font-arabic text-goldlt text-3xl [text-shadow:0_2px_14px_rgba(0,0,0,.7)]">
+              {scripture.thanks}
             </p>
-            <p className="font-caps text-[10px] tracking-widest2 text-gold/70 mt-1">
-              {site.studio}
+            <h3 className="font-display text-cream text-4xl mt-6 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
+              {t.withLove}
+            </h3>
+            <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed">
+              {notes.gratitude}
             </p>
-            <p className="font-caps text-[9px] tracking-widest2 text-muted/40 mt-1">
-              © {site.year}
+            <p className="font-display text-goldlt text-4xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
+              {site.brideFirst} <span className="text-gold">&</span> {site.groomFirst}
             </p>
+
+            <Divider className="my-12" />
+
+            <p className="kicker">{t.gentleNote}</p>
+            <p className="text-cream/85 mt-3 max-w-md mx-auto">{notes.giftNote}</p>
+
+            <div className="mt-16">
+              <Monogram initials={site.monogram} size={72} />
+              <p className="font-caps text-[9px] tracking-widest2 text-muted/60 mt-6">
+                {t.craftedBy}
+              </p>
+              <p className="font-caps text-[10px] tracking-widest2 text-gold/70 mt-1">
+                {site.studio}
+              </p>
+              <p className="font-caps text-[9px] tracking-widest2 text-muted/40 mt-1">
+                © {site.year}
+              </p>
+            </div>
           </div>
         </div>
       </section>
