@@ -29,8 +29,6 @@ module.exports = {
         fadeUp:   { "0%": { opacity: 0, transform: "translateY(24px)" }, "100%": { opacity: 1, transform: "none" } },
         fadeIn:   { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
         shimmer:  { "0%,100%": { opacity: 0.35 }, "50%": { opacity: 1 } },
-        gateOpenL:{ "0%": { transform: "none" }, "100%": { transform: "translateX(-105%) rotateY(28deg)" } },
-        gateOpenR:{ "0%": { transform: "none" }, "100%": { transform: "translateX(105%) rotateY(-28deg)" } },
         // Frosted-glass materialize: panel "condenses" into focus, like an
         // iOS sheet/card appearing — blur + scale settle into place.
         glassIn: {
@@ -43,8 +41,6 @@ module.exports = {
         fadeUp: "fadeUp 1s cubic-bezier(.2,.7,.3,1) both",
         fadeIn: "fadeIn 1.2s ease both",
         shimmer: "shimmer 3.5s ease-in-out infinite",
-        gateOpenL: "gateOpenL 2.2s cubic-bezier(.6,.05,.2,1) forwards",
-        gateOpenR: "gateOpenR 2.2s cubic-bezier(.6,.05,.2,1) forwards",
         glassIn: "glassIn 1.1s cubic-bezier(.2,.7,.3,1) both",
       },
     },

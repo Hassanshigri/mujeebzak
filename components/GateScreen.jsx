@@ -1,17 +1,8 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import { site, scripture, backgrounds } from "@/data/wedding.config";
-import { Arch } from "./Ornaments";
 
 export default function GateScreen({ t, onEnter }) {
-  const [opening, setOpening] = useState(false);
-
-  const enter = () => {
-    setOpening(true);
-    setTimeout(onEnter, 2000);
-  };
-
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
       <Image
@@ -24,22 +15,6 @@ export default function GateScreen({ t, onEnter }) {
       />
       {/* Warm the cache for the next screen while the guest lingers here */}
       <Image src={backgrounds.transition} alt="" width={1} height={1} priority className="hidden" />
-
-      {/* Gate leaves */}
-      <div className="absolute inset-0 flex pointer-events-none">
-        <div
-          className={`w-1/2 h-full origin-left border-r border-white/15 glass-door
-            ${opening ? "animate-gateOpenL" : ""}`}
-        >
-          <Arch className="h-full w-full opacity-60" />
-        </div>
-        <div
-          className={`w-1/2 h-full origin-right border-l border-white/15 glass-door
-            ${opening ? "animate-gateOpenR" : ""}`}
-        >
-          <Arch className="h-full w-full opacity-60 scale-x-[-1]" />
-        </div>
-      </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/30" />
 
@@ -55,12 +30,8 @@ export default function GateScreen({ t, onEnter }) {
           {site.groomFirst}
         </h1>
 
-        <button
-          onClick={enter}
-          disabled={opening}
-          className="btn-gold mt-12 animate-fadeUp disabled:opacity-60"
-        >
-          {opening ? t.entering : t.enter}
+        <button onClick={onEnter} className="btn-gold mt-12 animate-fadeUp">
+          {t.enter}
         </button>
       </div>
     </section>

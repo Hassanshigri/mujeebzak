@@ -11,9 +11,9 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
       <section className="relative geo-bg">
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/85 to-ink" />
 
-        <div className="relative z-10 px-4 pb-24">
+        <div className="relative z-10">
           {/* header */}
-          <div className="pt-24 pb-16 text-center">
+          <div className="px-4 pt-24 pb-16 text-center">
             <button
               onClick={onBack}
               className="absolute left-4 top-6 font-caps text-[10px] uppercase tracking-widest2
@@ -28,13 +28,9 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
             </h2>
           </div>
 
-          <div className="relative mx-auto max-w-4xl grid gap-8">
-            {/* Timeline spine — desktop only, cards zig-zag left/right along it */}
-            <div
-              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2
-                         bg-gradient-to-b from-transparent via-gold/30 to-transparent"
-              aria-hidden
-            />
+          {/* Each event gets its own full-bleed section: photo behind, details
+              card floated to alternating sides on top of it. */}
+          <div>
             {events.map((ev, i) => (
               <EventCard
                 key={ev.id}
@@ -46,32 +42,34 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
             ))}
           </div>
 
-          {/* notes */}
-          <div className="mx-auto max-w-3xl mt-24 text-center">
-            <p className="kicker">{t.beforeYouJoin}</p>
-            <h3 className="font-display text-goldlt text-4xl sm:text-5xl mt-2">
-              {t.celebrationNotes}
-            </h3>
+          <div className="px-4 pb-24">
+            {/* notes */}
+            <div className="mx-auto max-w-3xl mt-24 text-center">
+              <p className="kicker">{t.beforeYouJoin}</p>
+              <h3 className="font-display text-goldlt text-4xl sm:text-5xl mt-2">
+                {t.celebrationNotes}
+              </h3>
 
-            <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
-              <div className="panel corner px-7 py-8 animate-glassIn">
-                <p className="kicker">{t.responseRequired}</p>
-                <h4 className="font-display text-cream text-2xl mt-2">{t.rsvpDeadline}</h4>
-                <p className="text-muted mt-3 leading-relaxed">
-                  {t.rsvpDeadlineBody(notes.rsvpDeadline)}
-                </p>
-              </div>
-              <div className="panel corner px-7 py-8 animate-glassIn" style={{ animationDelay: "90ms" }}>
-                <p className="kicker">{t.pleaseNote}</p>
-                <h4 className="font-display text-cream text-2xl mt-2">{t.privateInvitation}</h4>
-                <p className="text-muted mt-3 leading-relaxed">{notes.privateNotice}</p>
+              <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
+                <div className="panel corner px-7 py-8 animate-glassIn">
+                  <p className="kicker">{t.responseRequired}</p>
+                  <h4 className="font-display text-cream text-2xl mt-2">{t.rsvpDeadline}</h4>
+                  <p className="text-muted mt-3 leading-relaxed">
+                    {t.rsvpDeadlineBody(notes.rsvpDeadline)}
+                  </p>
+                </div>
+                <div className="panel corner px-7 py-8 animate-glassIn" style={{ animationDelay: "90ms" }}>
+                  <p className="kicker">{t.pleaseNote}</p>
+                  <h4 className="font-display text-cream text-2xl mt-2">{t.privateInvitation}</h4>
+                  <p className="text-muted mt-3 leading-relaxed">{notes.privateNotice}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* rsvp */}
-          <div className="mx-auto max-w-3xl">
-            <RsvpForm t={t} guest={guest} events={events} />
+            {/* rsvp */}
+            <div className="mx-auto max-w-3xl">
+              <RsvpForm t={t} guest={guest} events={events} />
+            </div>
           </div>
         </div>
       </section>
