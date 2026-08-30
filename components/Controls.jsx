@@ -28,16 +28,14 @@ export default function Controls({ lang, setLang, t, playMusic }) {
       <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
         <button
           onClick={() => setLang(lang === "en" ? "ur" : "en")}
-          className="h-11 px-4 rounded-full border border-gold/40 bg-ink/70 backdrop-blur
-                     text-goldlt text-xs hover:bg-gold hover:text-ink transition"
+          className="glass-pill h-11 px-4 text-goldlt text-xs"
           aria-label="Switch language"
         >
           {t.toggle}
         </button>
         <button
           onClick={toggle}
-          className="h-11 w-11 rounded-full border border-gold/40 bg-ink/70 backdrop-blur
-                     text-goldlt hover:bg-gold hover:text-ink transition grid place-items-center"
+          className="glass-pill h-11 w-11 text-goldlt grid place-items-center"
           aria-label={on ? "Mute music" : "Play music"}
         >
           {on ? "♫" : "♪✕"}
