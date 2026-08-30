@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { site, scripture } from "@/data/wedding.config";
+import Image from "next/image";
+import { site, scripture, backgrounds } from "@/data/wedding.config";
 import { Arch } from "./Ornaments";
 
 export default function GateScreen({ t, onEnter }) {
@@ -12,34 +13,43 @@ export default function GateScreen({ t, onEnter }) {
   };
 
   return (
-    <section className="relative min-h-[100dvh] overflow-hidden geo-bg">
+    <section className="relative min-h-[100dvh] overflow-hidden">
+      <Image
+        src={backgrounds.gate}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Warm the cache for the next screen while the guest lingers here */}
+      <Image src={backgrounds.transition} alt="" width={1} height={1} priority className="hidden" />
+
       {/* Gate leaves */}
       <div className="absolute inset-0 flex pointer-events-none">
         <div
-          className={`w-1/2 h-full origin-left border-r border-gold/25
-            bg-[linear-gradient(100deg,#1A0508_0%,#4A121A_55%,#1A0508_100%)]
+          className={`w-1/2 h-full origin-left border-r border-white/15 glass-door
             ${opening ? "animate-gateOpenL" : ""}`}
         >
           <Arch className="h-full w-full opacity-60" />
         </div>
         <div
-          className={`w-1/2 h-full origin-right border-l border-gold/25
-            bg-[linear-gradient(260deg,#1A0508_0%,#4A121A_55%,#1A0508_100%)]
+          className={`w-1/2 h-full origin-right border-l border-white/15 glass-door
             ${opening ? "animate-gateOpenR" : ""}`}
         >
           <Arch className="h-full w-full opacity-60 scale-x-[-1]" />
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/30" />
 
       <div className="relative z-10 min-h-[100dvh] flex flex-col items-center justify-center px-6 text-center">
-        <p className="font-arabic text-goldlt/90 text-xl sm:text-2xl mb-6 animate-fadeIn">
+        <p className="font-arabic text-goldlt/90 text-xl sm:text-2xl mb-6 animate-fadeIn [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
           {scripture.bismillah}
         </p>
-        <p className="kicker mb-6 animate-fadeIn">{t.weddingCelebration}</p>
+        <p className="kicker mb-6 animate-fadeIn [text-shadow:0_2px_12px_rgba(0,0,0,.7)]">{t.weddingCelebration}</p>
 
-        <h1 className="font-display text-cream text-5xl sm:text-7xl md:text-8xl leading-none animate-fadeUp">
+        <h1 className="font-display text-cream text-5xl sm:text-7xl md:text-8xl leading-none animate-fadeUp [text-shadow:0_4px_24px_rgba(0,0,0,.75)]">
           {site.brideFirst}
           <span className="text-gold px-3 sm:px-4">&</span>
           {site.groomFirst}
