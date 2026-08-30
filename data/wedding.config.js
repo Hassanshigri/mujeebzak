@@ -49,6 +49,7 @@ export const events = [
     address: ["TODO street", "TODO city, ST 00000"],
     mapUrl: "",
     dressCode: "",
+    image: "/images/dua-e-khair-bg.png",
   },
   {
     id: "dolki",
@@ -61,6 +62,7 @@ export const events = [
     address: ["TODO street", "TODO city, ST 00000"],
     mapUrl: "",
     dressCode: "",
+    image: "/images/dolki-bg.png",
   },
   {
     id: "mayoun",
@@ -73,6 +75,7 @@ export const events = [
     address: ["TODO street", "TODO city, ST 00000"],
     mapUrl: "",
     dressCode: "",
+    image: "/images/mayo-bg.png",
   },
   {
     id: "mehndi",
@@ -88,6 +91,8 @@ export const events = [
       "https://www.google.com/maps/search/?api=1&query=Elite+Banquet+Hall+11315+S+Texas+6+Hwy+Sugar+Land+TX+77498",
     dressCode: "",
     note: "Ladies only. Hosted by Khalas. RSVP by November 16.",
+    // No background photo supplied for Mehndi yet (client sent 5 images,
+    // covering every event but this one) — card falls back to plain glass.
   },
   {
     id: "nikkah",
@@ -102,6 +107,7 @@ export const events = [
       "https://www.google.com/maps/search/?api=1&query=The+Spring+Wedding+and+Events+4999+Buller+Rd+Brookshire+TX+77423",
     dressCode: "",
     note: "Dinner to follow.",
+    image: "/images/nikah-bg.png",
   },
   {
     id: "valima",
@@ -115,6 +121,7 @@ export const events = [
     mapUrl:
       "https://www.google.com/maps/search/?api=1&query=Chateau+Crystal+2517+S+Gessner+Rd+Houston+TX+77063",
     dressCode: "",
+    image: "/images/valima-bg.png",
   },
 ];
 
@@ -128,6 +135,13 @@ export const notes = {
     "Your presence, prayers, and blessings will make our celebration complete. In shā' Allāh.",
   gratitude:
     "Your prayers, presence, and affection are deeply cherished by both families.",
+};
+
+export const backgrounds = {
+  gate: "/images/first.png",           // welcome screen, behind the glass doors
+  transition: "/images/second.png",    // shown ~1.5s while the doors finish opening
+  invitation: "/images/invitaiton-bg.png",
+  closing: "/images/end-bg.png",       // "With love and gratitude" section
 };
 
 export const music = {
