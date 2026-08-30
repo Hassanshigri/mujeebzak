@@ -1,67 +1,87 @@
 "use client";
-import { site, scripture, notes } from "@/data/wedding.config";
+import Image from "next/image";
+import { site, scripture, notes, backgrounds } from "@/data/wedding.config";
 import EventCard from "./EventCard";
 import RsvpForm from "./RsvpForm";
 import { Divider, Monogram } from "./Ornaments";
 
 export default function CelebrationsScreen({ t, guest, events, onBack }) {
   return (
-    <section className="relative geo-bg">
-      <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/85 to-ink" />
+    <>
+      <section className="relative geo-bg">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/85 to-ink" />
 
-      <div className="relative z-10 px-4 pb-24">
-        {/* header */}
-        <div className="pt-24 pb-16 text-center">
-          <button
-            onClick={onBack}
-            className="absolute left-4 top-6 font-caps text-[10px] uppercase tracking-widest2
-                       text-muted border border-gold/30 rounded-full px-5 py-3
-                       hover:text-goldlt hover:border-gold/70 transition"
-          >
-            {t.backToWelcome}
-          </button>
-          <p className="kicker">{t.preparedFor}</p>
-          <h2 className="font-display text-cream text-5xl sm:text-7xl mt-3">
-            {t.yourCelebrations}
-          </h2>
-        </div>
+        <div className="relative z-10 px-4 pb-24">
+          {/* header */}
+          <div className="pt-24 pb-16 text-center">
+            <button
+              onClick={onBack}
+              className="absolute left-4 top-6 font-caps text-[10px] uppercase tracking-widest2
+                         text-muted border border-gold/30 rounded-full px-5 py-3
+                         hover:text-goldlt hover:border-gold/70 transition"
+            >
+              {t.backToWelcome}
+            </button>
+            <p className="kicker">{t.preparedFor}</p>
+            <h2 className="font-display text-cream text-5xl sm:text-7xl mt-3">
+              {t.yourCelebrations}
+            </h2>
+          </div>
 
-        <div className="mx-auto max-w-3xl grid gap-8">
-          {events.map((ev, i) => (
-            <EventCard key={ev.id} event={ev} t={t} index={i} />
-          ))}
-        </div>
+          <div className="relative mx-auto max-w-4xl grid gap-8">
+            {/* Timeline spine — desktop only, cards zig-zag left/right along it */}
+            <div
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2
+                         bg-gradient-to-b from-transparent via-gold/30 to-transparent"
+              aria-hidden
+            />
+            {events.map((ev, i) => (
+              <EventCard
+                key={ev.id}
+                event={ev}
+                t={t}
+                index={i}
+                align={i % 2 === 0 ? "left" : "right"}
+              />
+            ))}
+          </div>
 
-        {/* notes */}
-        <div className="mx-auto max-w-3xl mt-24 text-center">
-          <p className="kicker">{t.beforeYouJoin}</p>
-          <h3 className="font-display text-goldlt text-4xl sm:text-5xl mt-2">
-            {t.celebrationNotes}
-          </h3>
+          {/* notes */}
+          <div className="mx-auto max-w-3xl mt-24 text-center">
+            <p className="kicker">{t.beforeYouJoin}</p>
+            <h3 className="font-display text-goldlt text-4xl sm:text-5xl mt-2">
+              {t.celebrationNotes}
+            </h3>
 
-          <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
-            <div className="panel corner px-7 py-8">
-              <p className="kicker">{t.responseRequired}</p>
-              <h4 className="font-display text-cream text-2xl mt-2">{t.rsvpDeadline}</h4>
-              <p className="text-muted mt-3 leading-relaxed">
-                {t.rsvpDeadlineBody(notes.rsvpDeadline)}
-              </p>
-            </div>
-            <div className="panel corner px-7 py-8">
-              <p className="kicker">{t.pleaseNote}</p>
-              <h4 className="font-display text-cream text-2xl mt-2">{t.privateInvitation}</h4>
-              <p className="text-muted mt-3 leading-relaxed">{notes.privateNotice}</p>
+            <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
+              <div className="panel corner px-7 py-8 animate-glassIn">
+                <p className="kicker">{t.responseRequired}</p>
+                <h4 className="font-display text-cream text-2xl mt-2">{t.rsvpDeadline}</h4>
+                <p className="text-muted mt-3 leading-relaxed">
+                  {t.rsvpDeadlineBody(notes.rsvpDeadline)}
+                </p>
+              </div>
+              <div className="panel corner px-7 py-8 animate-glassIn" style={{ animationDelay: "90ms" }}>
+                <p className="kicker">{t.pleaseNote}</p>
+                <h4 className="font-display text-cream text-2xl mt-2">{t.privateInvitation}</h4>
+                <p className="text-muted mt-3 leading-relaxed">{notes.privateNotice}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* rsvp */}
-        <div className="mx-auto max-w-3xl">
-          <RsvpForm t={t} guest={guest} events={events} />
+          {/* rsvp */}
+          <div className="mx-auto max-w-3xl">
+            <RsvpForm t={t} guest={guest} events={events} />
+          </div>
         </div>
+      </section>
 
-        {/* closing */}
-        <div className="mx-auto max-w-3xl mt-28 text-center">
+      {/* closing */}
+      <section className="relative overflow-hidden py-28 px-4">
+        <Image src={backgrounds.closing} alt="" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/25 to-ink/70" />
+
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <p className="font-arabic text-goldlt text-3xl">{scripture.thanks}</p>
           <h3 className="font-display text-cream text-4xl mt-6">{t.withLove}</h3>
           <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed">
@@ -89,7 +109,7 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
