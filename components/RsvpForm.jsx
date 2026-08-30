@@ -71,7 +71,7 @@ export default function RsvpForm({ t, guest, events }) {
         {events.map((ev) => {
           const a = answers[ev.id];
           return (
-            <div key={ev.id} className="panel corner px-6 sm:px-10 py-8">
+            <div key={ev.id} className="panel corner px-6 sm:px-10 py-8 animate-glassIn">
               <p className="kicker">{t.theCelebration}</p>
               <div className="flex flex-wrap items-baseline justify-between gap-3 mt-1">
                 <h4 className="font-display text-cream text-3xl">{ev.name}</h4>
@@ -84,11 +84,11 @@ export default function RsvpForm({ t, guest, events }) {
                     key={String(val)}
                     type="button"
                     onClick={() => set(ev.id, { attending: val })}
-                    className={`font-caps text-[10px] uppercase tracking-widest2 px-4 py-4 rounded-sm
-                      border transition-all duration-300
+                    className={`font-caps text-[10px] uppercase tracking-widest2 px-4 py-4 rounded-xl
+                      border backdrop-blur-md transition-all duration-300 active:scale-95
                       ${a.attending === val
-                        ? "border-gold bg-gold text-ink"
-                        : "border-gold/30 text-muted hover:border-gold/70 hover:text-goldlt"}`}
+                        ? "border-gold bg-gold/25 text-goldlt shadow-[inset_0_1px_0_rgba(255,255,255,.3)]"
+                        : "border-white/15 bg-white/5 text-muted hover:border-gold/60 hover:text-goldlt"}`}
                   >
                     {val ? t.joyfully : t.regretfully}
                   </button>
@@ -104,10 +104,10 @@ export default function RsvpForm({ t, guest, events }) {
                         key={n}
                         type="button"
                         onClick={() => set(ev.id, { adults: n })}
-                        className={`h-11 w-11 rounded-full border text-sm transition
+                        className={`h-11 w-11 rounded-full border text-sm backdrop-blur-md transition active:scale-95
                           ${Number(a.adults) === n
-                            ? "border-gold bg-gold text-ink"
-                            : "border-gold/30 text-muted hover:border-gold/70"}`}
+                            ? "border-gold bg-gold/25 text-goldlt shadow-[inset_0_1px_0_rgba(255,255,255,.3)]"
+                            : "border-white/15 bg-white/5 text-muted hover:border-gold/60"}`}
                       >
                         {n}
                       </button>
@@ -120,21 +120,20 @@ export default function RsvpForm({ t, guest, events }) {
         })}
       </div>
 
-      <div className="panel corner px-6 sm:px-10 py-8 mt-6">
+      <div className="panel corner px-6 sm:px-10 py-8 mt-6 animate-glassIn">
         <label className="field-label" htmlFor="duas">{t.duas}</label>
         <textarea
           id="duas"
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="mt-3 w-full bg-ink/60 border border-gold/25 rounded-sm px-4 py-3
-                     text-cream placeholder:text-muted/50 focus:border-gold focus:outline-none"
+          className="glass-input mt-3 w-full px-4 py-3"
           placeholder="…"
         />
       </div>
 
       {/* Summary */}
-      <div className="panel corner px-6 sm:px-10 py-10 mt-6 text-center">
+      <div className="panel corner px-6 sm:px-10 py-10 mt-6 text-center animate-glassIn">
         <p className="kicker">{t.yourInvitation}</p>
         <h4 className="font-display text-goldlt text-3xl mt-2">{t.reservedAttendance}</h4>
         <p className="font-display text-cream text-2xl mt-4">{guest.salutation || guest.name}</p>
