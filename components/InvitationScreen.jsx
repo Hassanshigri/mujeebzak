@@ -17,7 +17,10 @@ export default function InvitationScreen({ t, onDiscover }) {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/25 to-ink/60" />
 
       <div className="relative z-10 py-16 sm:py-24 px-4">
-        <div className="mx-auto max-w-3xl panel corner px-6 sm:px-14 py-14 sm:py-20 text-center animate-glassIn">
+        <div
+          className="mx-auto max-w-3xl panel corner px-6 sm:px-14 py-14 sm:py-20 text-center animate-glassIn"
+          style={{ backgroundColor: "rgba(26,5,8,.62)" }}
+        >
           <Monogram initials={site.monogram} size={104} />
 
           <p className="font-arabic text-goldlt text-2xl sm:text-3xl mt-10 leading-loose">
