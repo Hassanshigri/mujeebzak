@@ -119,6 +119,9 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
               <p className="font-caps text-[9px] tracking-widest2 text-muted/40 mt-1">
                 © {site.year}
               </p>
+              <p className="font-caps text-[8px] tracking-widest2 text-muted/30 mt-4">
+                MUSIC: "DESERT CITY" BY KEVIN MACLEOD (INCOMPETECH.COM) — CC BY 4.0
+              </p>
             </div>
           </div>
         </div>

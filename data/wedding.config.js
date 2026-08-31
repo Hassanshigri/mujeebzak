@@ -17,7 +17,7 @@ export const families = {
   // "With the blessings of Almighty Allah and the guidance of ..." — from the
   // formal Nikah card: "Alhaj Mohammad Yousuf / Late Syed Ahmed Ali request
   // the pleasure of your presence ... of their granddaughter"
-  blessingOf: "Alhaj Mohammad Yousuf / Late Syed Ahmed Ali",
+  blessingOf: "Alhaj Mohammad Yousuf / Late Syed Ahmed Ali / Late Ghulam Dastagir",
   brideParents: "MR. & MRS. MOHAMMED MUJEEB",
   groomParents: "MR. & MRS. AHMED MOHIUDDIN",
 };
@@ -138,7 +138,7 @@ export const notes = {
 };
 
 export const backgrounds = {
-  gate: "/images/first.png",           // welcome screen, behind the glass doors
+  gate: "/images/first.png",           // welcome screen
   transition: "/images/second.png",    // shown ~1.5s while the doors finish opening
   invitation: "/images/invitaiton-bg.png",
   closing: "/images/end-bg.png",       // "With love and gratitude" section

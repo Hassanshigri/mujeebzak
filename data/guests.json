@@ -8,8 +8,8 @@
     "events": ["nikkah", "valima"]
   },
   "sample-family-04": {
-    "name": "The Sample Family",
-    "salutation": "Sample Family",
+    "name": "Mr. & Mrs. Ahmed Mohiuddin & Mr. & Mrs. Mujeeb",
+    "salutation": "The Mohiuddin & Mujeeb Families",
     "adults": 4,
     "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
   },
@@ -18,5 +18,11 @@
     "salutation": "Ahmed Family",
     "adults": 6,
     "events": ["mehndi", "nikkah", "valima"]
+  },
+  "nikkah-valima-guests": {
+    "name": "TODO: guest name",
+    "salutation": "TODO",
+    "adults": 2,
+    "events": ["nikkah", "valima"]
   }
 }
