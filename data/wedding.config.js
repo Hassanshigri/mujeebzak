@@ -91,8 +91,8 @@ export const events = [
       "https://www.google.com/maps/search/?api=1&query=Elite+Banquet+Hall+11315+S+Texas+6+Hwy+Sugar+Land+TX+77498",
     dressCode: "",
     note: "Ladies only. Hosted by Khalas. RSVP by November 16.",
-    // No background photo supplied for Mehndi yet (client sent 5 images,
-    // covering every event but this one) — card falls back to plain glass.
+    // No dedicated Mehndi photo was supplied — reusing the Dua-e-Khair one.
+    image: "/images/dua-e-khair-bg.png",
   },
   {
     id: "nikkah",
