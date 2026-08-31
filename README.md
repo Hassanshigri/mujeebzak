@@ -1,15 +1,29 @@
 # Wedding Invitation & RSVP — Mujeeb (Fiverr)
 
-Next.js 14 (App Router) + Tailwind. Per-guest private invite links, three-stage
+Next.js 14 (App Router) + Tailwind. Two shared group invite links (not
+per-guest — the guest's name is never shown on screen), three-stage
 experience (gate → invitation → celebrations + RSVP), English/Urdu toggle,
 background music. Theme: deep wine/burgundy + antique gold.
+
+## The two links
+
+| Group | Events | Link |
+|---|---|---|
+| Nikkah & Valima only | Nikkah, Valima | `https://mujeebzak.vercel.app/?invite=9kx3fq7m` |
+| All celebrations | all 6 | `https://mujeebzak.vercel.app/?invite=p6wz4h2j` |
+
+The slugs are deliberately random/opaque — not "nikkah-guests" or
+sequential — so one group can't guess or infer the other group's link.
+`guest.name` still exists in `data/guests.json` and rides along on RSVP
+submissions (so responses can be told apart on the sheet), but it's never
+rendered on the page.
 
 ## Run
 
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000/?invite=anwar-dhanani-22
+# open http://localhost:3000/?invite=p6wz4h2j
 ```
 
 A link with no `?invite=` slug (or an unknown one) shows an "invitation not
@@ -76,13 +90,8 @@ so the form is testable now.
 
 Push to GitHub → import on Vercel → add `RSVP_WEBHOOK_URL` as an env var. Done.
 
-## Adding guests
+## Changing a link's slug or scope
 
-Append to `data/guests.json`:
-
-```json
-"ahmed-family-06": { "name": "The Ahmed Family", "salutation": "Ahmed Family", "adults": 6,
-  "events": ["mehndi", "nikkah", "valima"] }
-```
-
-Their link becomes `https://yoursite.vercel.app/?invite=ahmed-family-06`.
+Edit the key or `events` array directly in `data/guests.json`. Keep new
+slugs random/opaque (not a name or a sequential number) so the two group
+links can't be guessed from one another.

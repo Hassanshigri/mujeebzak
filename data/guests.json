@@ -1,28 +1,16 @@
 {
-  "_readme": "One entry per invite. The key is the slug used in the link: /?invite=anwar-dhanani-22 . 'events' lists which celebration ids this guest is invited to (ids come from wedding.config.js).",
+  "_readme": "Two shared group links now — not per-guest. The invite slug is deliberately random/opaque so one group can't guess the other's link. The site never displays guest.name on screen; it's only sent along with RSVP submissions so responses can be told apart on the sheet. 'events' lists which celebration ids that group is invited to (ids come from wedding.config.js).",
 
-  "anwar-dhanani-22": {
-    "name": "Mrs. & Mr. Anwar Dhanani",
-    "salutation": "Anwar Dhanani",
-    "adults": 2,
-    "events": ["nikkah", "valima"]
-  },
-  "sample-family-04": {
-    "name": "Mr. & Mrs. Ahmed Mohiuddin & Mr. & Mrs. Mujeeb",
-    "salutation": "The Mohiuddin & Mujeeb Families",
-    "adults": 4,
-    "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
-  },
-  "ahmed-family-06": {
-    "name": "The Ahmed Family",
-    "salutation": "Ahmed Family",
+  "9kx3fq7m": {
+    "name": "Nikkah & Valima Guests",
+    "salutation": "Nikkah & Valima Guests",
     "adults": 6,
-    "events": ["mehndi", "nikkah", "valima"]
-  },
-  "nikkah-valima-guests": {
-    "name": "TODO: guest name",
-    "salutation": "TODO",
-    "adults": 2,
     "events": ["nikkah", "valima"]
+  },
+  "p6wz4h2j": {
+    "name": "All Celebrations Guests",
+    "salutation": "All Celebrations Guests",
+    "adults": 6,
+    "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
   }
 }

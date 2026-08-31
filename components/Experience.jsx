@@ -55,7 +55,7 @@ export default function Experience() {
         <TransitionScreen onDone={() => setStage("invitation")} />
       )}
       {stage === "invitation" && (
-        <InvitationScreen t={t} guest={guest} onDiscover={() => setStage("celebrations")} />
+        <InvitationScreen t={t} onDiscover={() => setStage("celebrations")} />
       )}
       {stage === "celebrations" && (
         <CelebrationsScreen

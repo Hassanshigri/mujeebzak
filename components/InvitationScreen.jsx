@@ -3,7 +3,7 @@ import Image from "next/image";
 import { site, families, scripture, notes, backgrounds } from "@/data/wedding.config";
 import { Divider, Monogram } from "./Ornaments";
 
-export default function InvitationScreen({ t, guest, onDiscover }) {
+export default function InvitationScreen({ t, onDiscover }) {
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
       <Image
@@ -23,11 +23,6 @@ export default function InvitationScreen({ t, guest, onDiscover }) {
           <p className="font-arabic text-goldlt text-2xl sm:text-3xl mt-10 leading-loose">
             {scripture.bismillah}
           </p>
-
-          <p className="kicker mt-10">{t.privateInvitationFor}</p>
-          <h2 className="font-display text-cream text-4xl sm:text-5xl mt-4 leading-tight">
-            {guest.name}
-          </h2>
 
           <Divider className="my-10" />
 
