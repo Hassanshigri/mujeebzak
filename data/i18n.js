@@ -35,6 +35,8 @@ export const t = {
     kindlyRespond: "Kindly Respond",
     updatableLater:
       "Each answer can be updated later through this same private link.",
+    yourName: "Your name",
+    phoneNumber: "Phone number",
     attending: "Attending",
     joyfully: "Joyfully Attend",
     regretfully: "Regretfully Decline",
@@ -88,6 +90,8 @@ export const t = {
     rsvpChamber: "جوابی خانہ",
     kindlyRespond: "براہِ کرم جواب دیجیے",
     updatableLater: "آپ اسی لنک سے بعد میں جواب تبدیل کر سکتے ہیں۔",
+    yourName: "آپ کا نام",
+    phoneNumber: "فون نمبر",
     attending: "شرکت",
     joyfully: "خوشی سے شریک ہوں گے",
     regretfully: "معذرت خواہ ہیں",

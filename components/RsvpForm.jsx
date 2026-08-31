@@ -4,41 +4,46 @@ import { useMemo, useState } from "react";
 const STORAGE_KEY = (slug) => `rsvp:${slug}`;
 
 export default function RsvpForm({ t, guest, events }) {
-  // one answer per invited event
   const initial = useMemo(() => {
     let saved = null;
     if (typeof window !== "undefined") {
       try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY(guest.slug)) || "null"); }
       catch { saved = null; }
     }
-    const base = {};
+    const attending = {};
     events.forEach((e) => {
-      base[e.id] = saved?.answers?.[e.id] ?? { attending: true, adults: guest.adults };
+      attending[e.id] = saved?.attending?.[e.id] ?? true;
     });
-    return { answers: base, message: saved?.message || "" };
-  }, [guest.slug, guest.adults, events]);
+    return {
+      name: saved?.name || "",
+      phone: saved?.phone || "",
+      attending,
+      message: saved?.message || "",
+    };
+  }, [guest.slug, events]);
 
-  const [answers, setAnswers] = useState(initial.answers);
+  const [name, setName] = useState(initial.name);
+  const [phone, setPhone] = useState(initial.phone);
+  const [attending, setAttending] = useState(initial.attending);
   const [message, setMessage] = useState(initial.message);
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
-  const set = (id, patch) =>
-    setAnswers((a) => ({ ...a, [id]: { ...a[id], ...patch } }));
+  const toggle = (id, checked) =>
+    setAttending((a) => ({ ...a, [id]: checked }));
 
   const submit = async (e) => {
     e.preventDefault();
     setStatus("sending");
     const payload = {
       slug: guest.slug,
-      name: guest.name,
-      adultsInvited: guest.adults,
+      name,
+      phone,
       submittedAt: new Date().toISOString(),
       message,
       events: events.map((ev) => ({
         id: ev.id,
         name: ev.name,
-        attending: answers[ev.id].attending,
-        adults: answers[ev.id].attending ? Number(answers[ev.id].adults) : 0,
+        attending: attending[ev.id],
       })),
     };
     try {
@@ -48,7 +53,7 @@ export default function RsvpForm({ t, guest, events }) {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("bad status");
-      localStorage.setItem(STORAGE_KEY(guest.slug), JSON.stringify({ answers, message }));
+      localStorage.setItem(STORAGE_KEY(guest.slug), JSON.stringify({ name, phone, attending, message }));
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -66,51 +71,62 @@ export default function RsvpForm({ t, guest, events }) {
           <p className="text-muted mt-4">{t.updatableLater}</p>
         </div>
 
-        <div className="mt-10 max-w-lg mx-auto">
-          {events.map((ev) => {
-            const a = answers[ev.id];
-            return (
-              <label
-                key={ev.id}
-                htmlFor={`attend-${ev.id}`}
-                className="flex items-center justify-between gap-4 py-4 border-t border-gold/15 first:border-t-0 cursor-pointer"
-              >
-                <div>
-                  <p className="text-cream text-lg">{ev.name}</p>
-                  <p className="text-muted text-sm">{ev.date}</p>
-                </div>
+        <div className="mt-10 max-w-lg mx-auto grid sm:grid-cols-2 gap-5">
+          <div>
+            <label className="field-label" htmlFor="rsvp-name">{t.yourName}</label>
+            <input
+              id="rsvp-name"
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="glass-input mt-2 w-full px-4 py-3"
+              placeholder="…"
+            />
+          </div>
+          <div>
+            <label className="field-label" htmlFor="rsvp-phone">{t.phoneNumber}</label>
+            <input
+              id="rsvp-phone"
+              type="tel"
+              required
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="glass-input mt-2 w-full px-4 py-3"
+              placeholder="…"
+            />
+          </div>
+        </div>
 
-                <div className="flex items-center gap-3 shrink-0">
-                  {a.attending && guest.adults > 1 && (
-                    <select
-                      aria-label={t.adultsAttending}
-                      value={a.adults}
-                      onClick={(e) => e.stopPropagation()}
-                      onChange={(e) => set(ev.id, { adults: Number(e.target.value) })}
-                      className="glass-input px-2 py-2 text-sm w-16"
-                    >
-                      {Array.from({ length: guest.adults }, (_, i) => i + 1).map((n) => (
-                        <option key={n} value={n}>{n}</option>
-                      ))}
-                    </select>
-                  )}
-                  <span
-                    className={`font-caps text-[10px] uppercase tracking-widest2 whitespace-nowrap
-                      ${a.attending ? "text-gold" : "text-muted"}`}
-                  >
-                    {a.attending ? t.joyfully : t.regretfully}
-                  </span>
-                  <input
-                    id={`attend-${ev.id}`}
-                    type="checkbox"
-                    checked={a.attending}
-                    onChange={(e) => set(ev.id, { attending: e.target.checked })}
-                    className="h-6 w-6 rounded border-2 border-gold/50 bg-transparent accent-[#C9A24B] cursor-pointer"
-                  />
-                </div>
-              </label>
-            );
-          })}
+        <div className="mt-10 max-w-lg mx-auto">
+          {events.map((ev) => (
+            <label
+              key={ev.id}
+              htmlFor={`attend-${ev.id}`}
+              className="flex items-center justify-between gap-4 py-4 border-t border-gold/15 first:border-t-0 cursor-pointer"
+            >
+              <div>
+                <p className="text-cream text-lg">{ev.name}</p>
+                <p className="text-muted text-sm">{ev.date}</p>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <span
+                  className={`font-caps text-[10px] uppercase tracking-widest2 whitespace-nowrap
+                    ${attending[ev.id] ? "text-gold" : "text-muted"}`}
+                >
+                  {attending[ev.id] ? t.joyfully : t.regretfully}
+                </span>
+                <input
+                  id={`attend-${ev.id}`}
+                  type="checkbox"
+                  checked={attending[ev.id]}
+                  onChange={(e) => toggle(ev.id, e.target.checked)}
+                  className="h-6 w-6 rounded border-2 border-gold/50 bg-transparent accent-[#C9A24B] cursor-pointer"
+                />
+              </div>
+            </label>
+          ))}
         </div>
 
         <div className="mt-10 max-w-lg mx-auto">

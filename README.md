@@ -67,8 +67,8 @@ function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RSVP");
   data.events.forEach(ev => {
     sheet.appendRow([
-      data.submittedAt, data.slug, data.name, ev.name,
-      ev.attending ? "Attending" : "Declined", ev.adults, data.message
+      data.submittedAt, data.slug, data.name, data.phone, ev.name,
+      ev.attending ? "Attending" : "Declined", data.message
     ]);
   });
   return ContentService.createTextOutput(JSON.stringify({ ok: true }))
