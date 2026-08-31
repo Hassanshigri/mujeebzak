@@ -19,18 +19,18 @@ export default function GateScreen({ t, onEnter }) {
       <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/30" />
 
       <div className="relative z-10 min-h-[100dvh] flex flex-col items-center justify-center px-6 text-center">
-        <p className="font-arabic text-goldlt/90 text-xl sm:text-2xl mb-6 animate-fadeIn [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
+        <p className="font-arabic text-[#3E2723]/90 text-xl sm:text-2xl mb-6 animate-fadeIn [text-shadow:0_2px_10px_rgba(255,255,255,.35)]">
           {scripture.bismillah}
         </p>
-        <p className="kicker mb-6 animate-fadeIn [text-shadow:0_2px_12px_rgba(0,0,0,.7)]">{t.weddingCelebration}</p>
+        <p className="kicker mb-6 animate-fadeIn !text-[#3E2723] [text-shadow:0_2px_8px_rgba(255,255,255,.35)]">{t.weddingCelebration}</p>
 
-        <h1 className="font-display text-cream text-5xl sm:text-7xl md:text-8xl leading-none animate-fadeUp [text-shadow:0_4px_24px_rgba(0,0,0,.75)]">
+        <h1 className="font-display text-[#3E2723] text-5xl sm:text-7xl md:text-8xl leading-none animate-fadeUp [text-shadow:0_2px_18px_rgba(255,255,255,.4)]">
           {site.brideFirst}
-          <span className="text-gold px-3 sm:px-4">&</span>
+          <span className="text-[#3E2723] px-3 sm:px-4">&</span>
           {site.groomFirst}
         </h1>
 
-        <button onClick={onEnter} className="btn-gold mt-12 animate-fadeUp">
+        <button onClick={onEnter} className="btn-gold mt-12 animate-fadeUp !text-[#3E2723]">
           {t.enter}
         </button>
       </div>
