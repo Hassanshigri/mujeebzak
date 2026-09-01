@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 export function Divider({ className = "" }) {
   return (
@@ -12,22 +13,14 @@ export function Divider({ className = "" }) {
 
 export function Monogram({ initials, size = 96 }) {
   return (
-    <div
-      className="relative mx-auto flex items-center justify-center"
-      style={{ width: size, height: size }}
-      aria-hidden
-    >
-      <span
-        className="absolute inset-0 border border-gold/55"
-        style={{ transform: "rotate(45deg)" }}
+    <div className="relative mx-auto" style={{ width: size, height: size }}>
+      <Image
+        src="/images/monogram.png"
+        alt={initials ? `${initials} monogram` : ""}
+        fill
+        sizes={`${size}px`}
+        className="object-contain"
       />
-      <span
-        className="absolute inset-[7px] border border-gold/25"
-        style={{ transform: "rotate(45deg)" }}
-      />
-      <span className="font-caps text-goldlt tracking-[0.15em]" style={{ fontSize: size * 0.26 }}>
-        {initials}
-      </span>
     </div>
   );
 }
