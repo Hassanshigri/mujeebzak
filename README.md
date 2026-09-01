@@ -1,40 +1,54 @@
 # Wedding Invitation & RSVP — Mujeeb (Fiverr)
 
-Next.js 14 (App Router) + Tailwind. Two shared group invite links (not
-per-guest — the guest's name is never shown on screen), three-stage
-experience (gate → invitation → celebrations + RSVP), English/Urdu toggle,
-background music. Theme: deep wine/burgundy + antique gold.
+Next.js 14 (App Router) + Tailwind. One single shared link — guests type
+their own name to unlock the invitation, and see only the celebrations
+they're invited to. Five-stage experience (gate → transition → name gate →
+invitation → celebrations + RSVP), English/Urdu toggle, background music.
+Theme: deep wine/burgundy + antique gold.
 
-## The two links
+## How guest access works now
 
-| Group | Events | Link |
-|---|---|---|
-| Nikkah & Valima only | Nikkah, Valima | `https://mujeebzak.vercel.app/?invite=9kx3fq7m` |
-| All celebrations | all 6 | `https://mujeebzak.vercel.app/?invite=p6wz4h2j` |
+There's no more `?invite=` link per guest/group. Everyone gets the same
+link. After the gate, a "What's your name?" screen asks the guest to type
+their name; it's matched case-insensitively (whitespace trimmed) against
+`data/guests.json`. Whoever matches sees only the events listed for them —
+2, 3, or all 6.
 
-The slugs are deliberately random/opaque — not "nikkah-guests" or
-sequential — so one group can't guess or infer the other group's link.
-`guest.name` still exists in `data/guests.json` and rides along on RSVP
-submissions (so responses can be told apart on the sheet), but it's never
-rendered on the page.
+**This is currently a small hand-typed placeholder list (3 dummy names)
+while waiting on the client's Google Sheet.** Once he sends it, swap
+`data/guests.json` for real entries pulled from the sheet (see
+`findGuestByName` in `data/guests.js` if the sheet needs a different
+matching strategy, e.g. matching a household name instead of every
+individual).
+
+Current placeholder guests:
+
+| Type "..." | Sees |
+|---|---|
+| Mujeeb | Nikkah, Valima |
+| Ahmed Family | Mehndi, Nikkah, Valima |
+| Anwar Dhanani | all 6 |
 
 ## Run
 
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000/?invite=p6wz4h2j
+# open http://localhost:3000 — click through, then type "mujeeb" (or any
+# name from data/guests.json) at the name screen
 ```
 
-A link with no `?invite=` slug (or an unknown one) shows an "invitation not
-found" card — the invite is private by design.
+An unrecognized name shows an inline "we couldn't find that name" message
+with a chance to retry — not a dead-end page, since it's very likely just a
+typo.
 
 ## Where everything lives
 
 | What | File |
 |---|---|
 | Names, parents, all 6 events, dates, venues, notes | `data/wedding.config.js` |
-| Guest list + who is invited to which events | `data/guests.json` |
+| Guest list + who is invited to which events (name-matched) | `data/guests.json` |
+| Name-matching logic | `data/guests.js` |
 | English / Urdu UI strings | `data/i18n.js` |
 | RSVP submit handler | `app/api/rsvp/route.js` |
 | Background track | `public/audio/theme.mp3` |
@@ -90,8 +104,14 @@ so the form is testable now.
 
 Push to GitHub → import on Vercel → add `RSVP_WEBHOOK_URL` as an env var. Done.
 
-## Changing a link's slug or scope
+## Adding or editing guests
 
-Edit the key or `events` array directly in `data/guests.json`. Keep new
-slugs random/opaque (not a name or a sequential number) so the two group
-links can't be guessed from one another.
+Add/edit an entry in `data/guests.json`:
+
+```json
+"jane-family": { "name": "Jane Family", "events": ["mehndi", "nikkah", "valima"] }
+```
+
+The object key is just an internal id (used for the RSVP local-storage key
+and the sheet's `slug` column) — it's never shown to the guest or matched
+against. Only `name` is matched against what they type.

@@ -57,6 +57,12 @@ export const t = {
     notFoundTitle: "Invitation not found",
     notFoundBody:
       "This link does not match an invitation. Please use the exact link sent to you, or contact the family.",
+    nameGateTitle: "What's your name?",
+    nameGateHelp: "Enter your name to see your personal invitation and celebrations.",
+    nameGatePlaceholder: "Your name",
+    nameGateSubmit: "Continue",
+    nameGateNotFound:
+      "We couldn't find that name. Please check the spelling, or reach out to the family directly.",
   },
   ur: {
     dir: "rtl",
@@ -112,5 +118,11 @@ export const t = {
     notFoundTitle: "دعوت نامہ نہیں ملا",
     notFoundBody:
       "یہ لنک کسی دعوت نامے سے مطابقت نہیں رکھتا۔ براہِ کرم وہی لنک استعمال کریں جو آپ کو بھیجا گیا۔",
+    nameGateTitle: "آپ کا نام کیا ہے؟",
+    nameGateHelp: "اپنی دعوت اور تقریبات دیکھنے کے لیے اپنا نام درج کریں۔",
+    nameGatePlaceholder: "آپ کا نام",
+    nameGateSubmit: "آگے بڑھیں",
+    nameGateNotFound:
+      "یہ نام نہیں ملا۔ براہِ کرم ہجے چیک کریں یا خاندان سے براہِ راست رابطہ کریں۔",
   },
 };

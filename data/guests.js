@@ -1,9 +1,16 @@
 import guests from "./guests.json";
 
-export const getGuest = (slug) => {
-  if (!slug) return null;
-  const g = guests[slug.toLowerCase().trim()];
-  return g ? { slug, ...g } : null;
+const normalize = (s) => s.toLowerCase().trim().replace(/\s+/g, " ");
+
+// Guests type their name; find the record whose name matches, regardless
+// of case/spacing. Returns null if nothing matches.
+export const findGuestByName = (input) => {
+  if (!input) return null;
+  const needle = normalize(input);
+  const slug = Object.keys(guests).find(
+    (key) => key !== "_readme" && normalize(guests[key].name) === needle
+  );
+  return slug ? { slug, ...guests[slug] } : null;
 };
 
 export default guests;

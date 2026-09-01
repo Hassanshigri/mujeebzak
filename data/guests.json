@@ -1,16 +1,16 @@
 {
-  "_readme": "Two shared group links now — not per-guest. The invite slug is deliberately random/opaque so one group can't guess the other's link. The site never displays guest.name on screen; it's only sent along with RSVP submissions so responses can be told apart on the sheet. 'events' lists which celebration ids that group is invited to (ids come from wedding.config.js).",
+  "_readme": "Guests type their own name on the site (matched case-insensitively, whitespace-trimmed) instead of using a per-guest link. Whoever matches sees only the events listed for them. This is a small hand-typed placeholder list — swap it for the client's Google Sheet once he sends it. The object key is just an internal id (used for the RSVP local-storage key); it's never shown to the guest.",
 
-  "9kx3fq7m": {
-    "name": "Nikkah & Valima Guests",
-    "salutation": "Nikkah & Valima Guests",
-    "adults": 6,
+  "mujeeb": {
+    "name": "Mujeeb",
     "events": ["nikkah", "valima"]
   },
-  "p6wz4h2j": {
-    "name": "All Celebrations Guests",
-    "salutation": "All Celebrations Guests",
-    "adults": 6,
+  "ahmed-family": {
+    "name": "Ahmed Family",
+    "events": ["mehndi", "nikkah", "valima"]
+  },
+  "anwar-dhanani": {
+    "name": "Anwar Dhanani",
     "events": ["dua-e-khair", "dolki", "mayoun", "mehndi", "nikkah", "valima"]
   }
 }
