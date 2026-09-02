@@ -24,6 +24,7 @@ export default function GateScreen({ t, onEnter }) {
       <video
         ref={videoRef}
         src={envelopeVideo}
+        poster="/images/envelope-poster.webp"
         muted
         playsInline
         preload="auto"
