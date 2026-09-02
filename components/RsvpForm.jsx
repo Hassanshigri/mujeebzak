@@ -64,10 +64,10 @@ export default function RsvpForm({ t, events }) {
       <div className="panel corner px-6 sm:px-10 py-10 animate-glassIn">
         <div className="text-center">
           <p className="kicker">{t.rsvpChamber}</p>
-          <h3 className="font-display text-goldlt text-4xl sm:text-5xl mt-2">
+          <h3 className="font-display text-maroon text-4xl sm:text-5xl mt-2">
             {t.kindlyRespond}
           </h3>
-          <p className="text-muted mt-4">{t.updatableLater}</p>
+          <p className="text-mutedDk mt-4">{t.updatableLater}</p>
         </div>
 
         <div className="mt-10 max-w-lg mx-auto grid sm:grid-cols-2 gap-5">
@@ -102,17 +102,17 @@ export default function RsvpForm({ t, events }) {
             <label
               key={ev.id}
               htmlFor={`attend-${ev.id}`}
-              className="flex items-center justify-between gap-4 py-4 border-t border-gold/15 first:border-t-0 cursor-pointer"
+              className="flex items-center justify-between gap-4 py-4 border-t border-golddk/20 first:border-t-0 cursor-pointer"
             >
               <div>
-                <p className="text-cream text-lg">{ev.name}</p>
-                <p className="text-muted text-sm">{ev.date}</p>
+                <p className="text-ink text-lg">{ev.name}</p>
+                <p className="text-mutedDk text-sm">{ev.date}</p>
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
                 <span
                   className={`font-caps text-[10px] uppercase tracking-widest2 whitespace-nowrap
-                    ${attending[ev.id] ? "text-gold" : "text-muted"}`}
+                    ${attending[ev.id] ? "text-golddk" : "text-mutedDk"}`}
                 >
                   {attending[ev.id] ? t.joyfully : t.regretfully}
                 </span>
@@ -121,7 +121,7 @@ export default function RsvpForm({ t, events }) {
                   type="checkbox"
                   checked={attending[ev.id]}
                   onChange={(e) => toggle(ev.id, e.target.checked)}
-                  className="h-6 w-6 rounded border-2 border-gold/50 bg-transparent accent-[#C9A24B] cursor-pointer"
+                  className="h-6 w-6 rounded border-2 border-golddk/60 bg-transparent accent-[#8A6B23] cursor-pointer"
                 />
               </div>
             </label>
@@ -149,10 +149,10 @@ export default function RsvpForm({ t, events }) {
             {status === "sending" ? t.sending : t.confirm}
           </button>
 
-          {status === "sent" && <p className="text-gold mt-5">{t.sent}</p>}
-          {status === "error" && <p className="text-red-300 mt-5">{t.failed}</p>}
+          {status === "sent" && <p className="text-golddk mt-5">{t.sent}</p>}
+          {status === "error" && <p className="text-red-700 mt-5">{t.failed}</p>}
 
-          <p className="text-muted text-sm mt-5">{t.returnNote}</p>
+          <p className="text-mutedDk text-sm mt-5">{t.returnNote}</p>
         </div>
       </div>
     </form>

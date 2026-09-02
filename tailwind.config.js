@@ -4,19 +4,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Deep wine/burgundy + antique gold — matches the maroon-and-gold
-        // tones on the client's printed cards. Token names kept as-is
-        // (just repointed) so every existing bg-emerald/bg-moss/etc. class
-        // across the components picks up the new hue automatically.
-        ink:     "#1A0508",  // deepest background
-        forest:  "#2E0B10",  // panel background
-        emerald: "#4A121A",  // card / raised surface
-        moss:    "#6E1B24",  // hover / accent surface
-        gold:    "#C9A24B",  // primary metallic
-        goldlt:  "#E7CE95",  // light gold for headings
-        golddk:  "#8A6B23",  // hairlines
-        cream:   "#F3EADA",  // body text
-        muted:   "#C4AC96",  // secondary text
+        // Mehroon (maroon) + beige — the page itself is a rich maroon, cards
+        // are warm cardstock beige (like the client's printed invitations).
+        ink:     "#2B0810",  // near-black maroon — dark text on beige, deep shadows
+        maroon:  "#5C1120",  // primary page background
+        maroondk:"#3A0A15",  // deeper maroon for gradients
+        beige:   "#F3E7CC",  // cardstock panel background
+        beigedk: "#E2CE9F",  // deeper beige — borders/hover on beige surfaces
+        gold:    "#C9A24B",  // primary metallic accent
+        goldlt:  "#E7CE95",  // light gold — headings on maroon
+        golddk:  "#8A6B23",  // deeper gold — text/accents on beige (better contrast)
+        cream:   "#F6EFE0",  // light text on maroon
+        muted:   "#D9C3AE",  // secondary text on maroon
+        mutedDk: "#7A5F49",  // secondary text on beige
+        // Legacy aliases so any leftover bg-forest/bg-emerald/bg-moss keep working
+        forest:  "#3A0A15",
+        emerald: "#5C1120",
+        moss:    "#7A1B2C",
       },
       fontFamily: {
         display: ["var(--font-display)", "Cormorant Garamond", "serif"],

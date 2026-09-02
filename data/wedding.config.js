@@ -31,69 +31,11 @@ export const scripture = {
 
 /* ----------------------------------------------------------------------------
    EVENTS
-   Mehndi / Nikah / Valima dates, times & venues below are taken straight off
-   the three printed invitation cards the client sent — those are confirmed.
-   Dua-e-Khair, Dolki and Mayoun still only have the dates from his original
-   text message; no card for those three yet, so time/venue/address are
-   still TODO.
+   Client scaled the invite down to just Nikkah + Valima. Dates/times/venues
+   are straight off the two printed invitation cards. `isoDate` drives the
+   live countdown — keep it in sync with `date`+`time` if either changes.
    -------------------------------------------------------------------------*/
 export const events = [
-  {
-    id: "dua-e-khair",
-    name: "Dua-e-Khair",
-    blurb:
-      "We begin with prayer. Join us as both families gather to seek Allah's blessings for {BRIDE} and {GROOM} at the start of their journey.",
-    date: "Saturday, December 5, 2026",
-    time: "TODO",
-    venue: "TODO",
-    address: ["TODO street", "TODO city, ST 00000"],
-    mapUrl: "",
-    dressCode: "",
-    image: "/images/dua-e-khair-bg.png",
-  },
-  {
-    id: "dolki",
-    name: "Dolki",
-    blurb:
-      "An evening of dhol, song and laughter as the celebrations open in the warmth of family.",
-    date: "Saturday, December 12, 2026",
-    time: "TODO",
-    venue: "TODO",
-    address: ["TODO street", "TODO city, ST 00000"],
-    mapUrl: "",
-    dressCode: "",
-    image: "/images/dolki-bg.png",
-  },
-  {
-    id: "mayoun",
-    name: "Mayoun",
-    blurb:
-      "The traditional ubtan ceremony — a tender morning of blessings for the bride before the days ahead.",
-    date: "Sunday, December 13, 2026",
-    time: "TODO",
-    venue: "TODO",
-    address: ["TODO street", "TODO city, ST 00000"],
-    mapUrl: "",
-    dressCode: "",
-    image: "/images/mayo-bg.png",
-  },
-  {
-    id: "mehndi",
-    name: "Mehndi",
-    blurb:
-      "Join us for an evening of henna, music, dance & delicious food!",
-    date: "Wednesday, December 16, 2026",
-    time: "6:00 PM – 11:00 PM",
-    venue: "Elite Banquet Hall",
-    // TODO: confirm exact street address — card text was cramped/hard to read
-    address: ["11315 S Texas 6 Hwy", "Sugar Land, TX 77498"],
-    mapUrl:
-      "https://www.google.com/maps/search/?api=1&query=Elite+Banquet+Hall+11315+S+Texas+6+Hwy+Sugar+Land+TX+77498",
-    dressCode: "",
-    note: "Ladies only. Hosted by Khalas. RSVP by November 16.",
-    // No dedicated Mehndi photo was supplied — reusing the Dua-e-Khair one.
-    image: "/images/dua-e-khair-bg.png",
-  },
   {
     id: "nikkah",
     name: "Nikkah",
@@ -101,6 +43,7 @@ export const events = [
       "With gratitude to Allah, we invite you to witness the sacred vows that unite {BRIDE} and {GROOM}.",
     date: "Friday, December 18, 2026",
     time: "4:00 PM",
+    isoDate: "2026-12-18T16:00:00-06:00",
     venue: "The Spring - Wedding & Events",
     address: ["4999 Buller Rd.", "Brookshire, TX 77423"],
     mapUrl:
@@ -116,6 +59,7 @@ export const events = [
       "Please join us for an evening of gratitude and celebration as family and friends gather for the Valima.",
     date: "Saturday, December 19, 2026",
     time: "7:00 PM",
+    isoDate: "2026-12-19T19:00:00-06:00",
     venue: "Chateau Crystal",
     address: ["2517 S. Gessner Rd", "Houston, TX 77063"],
     mapUrl:

@@ -1,54 +1,58 @@
 # Wedding Invitation & RSVP — Mujeeb (Fiverr)
 
-Next.js 14 (App Router) + Tailwind. One single link, same for every guest —
-no per-guest links, no name lookup. Three-stage experience (envelope video →
-invitation → celebrations + RSVP), English/Urdu toggle, background music.
-Theme: deep wine/burgundy + antique gold, solid cardstock-style surfaces
-(no glass/blur).
+Next.js 14 (App Router) + Tailwind. One single link, same for every guest.
+Two stages: envelope-opening video (tap to play, butterflies flutter while
+it plays) → one continuous page with the invitation, a live countdown, the
+two celebrations in a calendar-card layout, RSVP, and the footer. English/
+Urdu toggle, background music. Theme: mehroon (maroon) + beige, solid
+cardstock-style surfaces (no glass/blur).
 
 ## How it works
 
-Everyone gets the same link and sees the same thing: the envelope-opening
-video plays (tap to start, runs ~4.2s), then straight into the invitation,
-then all 6 celebrations. There's no guest identification before that point.
+Everyone gets the same link. Tap the envelope → the opening video plays
+(~4.2s, with a handful of butterflies fluttering across the screen) →
+straight into the invitation. No name gate, no per-guest links.
 
-Guests identify themselves only when they RSVP — the form asks for their
-name and phone number directly (see `components/RsvpForm.jsx`), which is
-what shows up in the Google Sheet to tell responses apart.
+Scrolling down from the invitation, on the same page: a live countdown to
+the Nikkah, then both celebrations (Nikkah + Valima) as calendar-style
+cards, then the RSVP form, then the footer. Guests identify themselves only
+when they RSVP — the form asks for their name and phone number directly
+(`components/RsvpForm.jsx`), which is what shows up in the Google Sheet.
 
 ## Run
 
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000 — tap the envelope, wait ~4.2s, you're in
+# open http://localhost:3000 — tap the envelope, wait ~4.2s, scroll down
 ```
 
 ## Where everything lives
 
 | What | File |
 |---|---|
-| Names, parents, all 6 events, dates, venues, notes | `data/wedding.config.js` |
+| Names, parents, the 2 events (Nikkah + Valima), dates, venues, notes | `data/wedding.config.js` |
 | English / Urdu UI strings | `data/i18n.js` |
 | Envelope-opening video | `public/videos/envelope-open.mp4` |
+| Butterfly animation (gate screen) | `components/Butterflies.jsx` |
+| Live countdown | `components/Countdown.jsx` |
+| Calendar-style event card | `components/CalendarEventCard.jsx` |
 | RSVP submit handler | `app/api/rsvp/route.js` |
 | Background track | `public/audio/theme.mp3` |
 
+Each event needs both a display `date`/`time` (what's printed on the card)
+and an `isoDate` (drives the countdown + the calendar card's day/month —
+always formatted in the venue's own timezone, America/Chicago, so every
+guest sees the same date regardless of their own device's timezone).
+
 ## Still TODO (waiting on client)
 
-- [x] Bride & groom first names, monogram initials — **Urooj & Zameer** (displayed as "Zameer & Urooj"), monogram is the client's Z&U gold crest
+- [x] Bride & groom first names, monogram — **Urooj & Zameer** (displayed as "Zameer & Urooj"), monogram is the client's Z&U gold crest
 - [x] Both sets of parents' names — from the formal Nikah card:
       bride is daughter of Mr. & Mrs. Mohammed Mujeeb, groom is son of Mr. & Mrs. Ahmed Mohiuddin,
       blessing line is Alhaj Mohammad Yousuf / Late Syed Ahmed Ali / Late Ghulam Dastagir
-- [x] Time + venue + full address + map link for **Mehndi, Nikkah, Valima** — taken from the three
-      printed invitation cards he sent
-- [ ] Time + venue + full address for **Dua-e-Khair, Dolki, Mayoun** — no cards for these yet, only
-      the dates from his original text message
-- [x] RSVP deadline date — **November 16, 2026** (per the Mehndi card)
-- [x] **Event/date pairing confirmed** by the printed cards:
-      Dua-e-Khair Dec 5 · Dolki Dec 12 · Mayoun Dec 13 · Mehndi Dec 16 (Wed) · Nikkah Dec 18 (Fri) · Valima Dec 19 (Sat)
-- [ ] Confirm exact Elite Banquet Hall street address — the card text was cramped ("11315 S Texas 6 h");
-      entered as `11315 S Texas 6 Hwy, Sugar Land, TX 77498` (Hwy 6 runs through Sugar Land) — please double-check
+- [x] Time + venue + full address + map link for **Nikkah, Valima** — taken from the printed invitation cards
+- [x] Event/date pairing confirmed: **Nikkah Dec 18 (Fri) · Valima Dec 19 (Sat), 2026**
 - [ ] Google Sheet link → paste into `RSVP_WEBHOOK_URL` in `.env.local`
 - [ ] Envelope video currently has a visible "Pika" watermark (free-tier AI export) — swap for the clean/paid version before launch
 

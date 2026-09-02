@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { envelopeVideo } from "@/data/wedding.config";
+import Butterflies from "./Butterflies";
 
 const PLAY_DURATION_MS = 4200;
 
@@ -34,6 +35,8 @@ export default function GateScreen({ t, onEnter }) {
           {t.tapToOpen}
         </p>
       )}
+
+      {playing && <Butterflies />}
     </section>
   );
 }
