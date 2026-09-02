@@ -47,7 +47,7 @@ export const events = [
     venue: "The Spring - Wedding & Events",
     address: ["4999 Buller Rd.", "Brookshire, TX 77423"],
     mapUrl:
-      "https://www.google.com/maps/search/?api=1&query=The+Spring+Wedding+and+Events+4999+Buller+Rd+Brookshire+TX+77423",
+      "https://www.google.com/maps/dir/?api=1&destination=The+Spring+Wedding+and+Events+4999+Buller+Rd+Brookshire+TX+77423",
     dressCode: "",
     note: "Dinner to follow.",
     image: "/images/nikah-bg.webp",
@@ -63,7 +63,7 @@ export const events = [
     venue: "Chateau Crystal",
     address: ["2517 S. Gessner Rd", "Houston, TX 77063"],
     mapUrl:
-      "https://www.google.com/maps/search/?api=1&query=Chateau+Crystal+2517+S+Gessner+Rd+Houston+TX+77063",
+      "https://www.google.com/maps/dir/?api=1&destination=Chateau+Crystal+2517+S+Gessner+Rd+Houston+TX+77063",
     dressCode: "",
     image: "/images/valima-bg.webp",
   },

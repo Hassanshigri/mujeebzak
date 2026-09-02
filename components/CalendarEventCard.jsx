@@ -59,7 +59,21 @@ export default function CalendarEventCard({ event, t }) {
         </div>
 
         {event.mapUrl && (
-          <a href={event.mapUrl} target="_blank" rel="noreferrer" className="btn-gold inline-block mt-7">
+          <a
+            href={event.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-gold inline-flex items-center gap-2 mt-7"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path
+                d="M12 22s7-7.58 7-12.5S16.4 2 12 2 5 4.86 5 9.5 12 22 12 22Z"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+              <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" strokeWidth="1.8" />
+            </svg>
             {t.viewLocation}
           </a>
         )}

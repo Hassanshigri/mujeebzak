@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { music } from "@/data/wedding.config";
 
-export default function Controls({ lang, setLang, t, playMusic }) {
+export default function Controls({ t, playMusic }) {
   const audioRef = useRef(null);
   const [on, setOn] = useState(false);
 
@@ -26,13 +26,6 @@ export default function Controls({ lang, setLang, t, playMusic }) {
     <>
       <audio ref={audioRef} src={music.src} loop preload="none" />
       <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        <button
-          onClick={() => setLang(lang === "en" ? "ur" : "en")}
-          className="solid-pill h-11 px-4 text-goldlt text-xs"
-          aria-label="Switch language"
-        >
-          {t.toggle}
-        </button>
         <button
           onClick={toggle}
           className="solid-pill h-11 w-11 text-goldlt grid place-items-center"

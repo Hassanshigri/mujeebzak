@@ -91,9 +91,7 @@ export default function InvitationScreen({ t }) {
       </section>
 
       {/* Events */}
-      <section className="relative geo-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-maroon via-maroondk to-maroon" />
-
+      <section className="relative events-bg">
         <div className="relative z-10 px-4 py-24">
           <div className="mx-auto max-w-4xl grid sm:grid-cols-2 gap-8 items-start">
             {events.map((ev) => (
@@ -104,9 +102,7 @@ export default function InvitationScreen({ t }) {
       </section>
 
       {/* RSVP */}
-      <section className="relative geo-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-maroondk via-maroon to-maroondk" />
-
+      <section className="relative events-bg">
         <div className="relative z-10 px-4 py-24">
           <div className="mx-auto max-w-3xl">
             <RsvpForm t={t} events={events} />

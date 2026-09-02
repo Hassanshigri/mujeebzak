@@ -98,6 +98,24 @@ body {
   }
 }
 
+/* Events + RSVP backdrop — plain geo pattern on mobile (no extra photo
+   download), the same ornamental web countdown art on desktop/web. */
+.events-bg {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(122, 27, 44, 0.5), transparent 60%),
+    repeating-conic-gradient(from 45deg at 50% 50%,
+      rgba(201,162,75,0.06) 0deg 15deg, transparent 15deg 30deg);
+  background-size: 100% 100%, 220px 220px;
+}
+@media (min-width: 640px) {
+  .events-bg {
+    background-image: url("/images/countdown-web-bd.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
 [dir="rtl"] { font-family: var(--font-urdu); }
 [dir="rtl"] .font-caps { letter-spacing: 0; }
 
