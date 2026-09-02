@@ -114,4 +114,4 @@ Add/edit an entry in `data/guests.json`:
 
 The object key is just an internal id (used for the RSVP local-storage key
 and the sheet's `slug` column) — it's never shown to the guest or matched
-against. Only `name` is matched against what they type.
+against. Only `name` is matched against what they type..
