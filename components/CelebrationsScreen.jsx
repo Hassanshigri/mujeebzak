@@ -5,7 +5,7 @@ import EventCard from "./EventCard";
 import RsvpForm from "./RsvpForm";
 import { Divider, Monogram } from "./Ornaments";
 
-export default function CelebrationsScreen({ t, guest, events, onBack }) {
+export default function CelebrationsScreen({ t, events, onBack }) {
   return (
     <>
       <section className="relative geo-bg">
@@ -68,7 +68,7 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
 
             {/* rsvp */}
             <div className="mx-auto max-w-3xl">
-              <RsvpForm t={t} guest={guest} events={events} />
+              <RsvpForm t={t} events={events} />
             </div>
           </div>
         </div>

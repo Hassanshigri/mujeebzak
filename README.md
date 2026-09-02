@@ -1,64 +1,45 @@
 # Wedding Invitation & RSVP — Mujeeb (Fiverr)
 
-Next.js 14 (App Router) + Tailwind. One single shared link — guests type
-their own name to unlock the invitation, and see only the celebrations
-they're invited to. Five-stage experience (gate → transition → name gate →
+Next.js 14 (App Router) + Tailwind. One single link, same for every guest —
+no per-guest links, no name lookup. Three-stage experience (envelope video →
 invitation → celebrations + RSVP), English/Urdu toggle, background music.
-Theme: deep wine/burgundy + antique gold.
+Theme: deep wine/burgundy + antique gold, solid cardstock-style surfaces
+(no glass/blur).
 
-## How guest access works now
+## How it works
 
-There's no more `?invite=` link per guest/group. Everyone gets the same
-link. After the gate, a "What's your name?" screen asks the guest to type
-their name; it's matched case-insensitively (whitespace trimmed) against
-`data/guests.json`. Whoever matches sees only the events listed for them —
-2, 3, or all 6.
+Everyone gets the same link and sees the same thing: the envelope-opening
+video plays (tap to start, runs ~4.2s), then straight into the invitation,
+then all 6 celebrations. There's no guest identification before that point.
 
-**This is currently a small hand-typed placeholder list (3 dummy names)
-while waiting on the client's Google Sheet.** Once he sends it, swap
-`data/guests.json` for real entries pulled from the sheet (see
-`findGuestByName` in `data/guests.js` if the sheet needs a different
-matching strategy, e.g. matching a household name instead of every
-individual).
-
-Current placeholder guests:
-
-| Type "..." | Sees |
-|---|---|
-| Mujeeb | Nikkah, Valima |
-| Ahmed Family | Mehndi, Nikkah, Valima |
-| Anwar Dhanani | all 6 |
+Guests identify themselves only when they RSVP — the form asks for their
+name and phone number directly (see `components/RsvpForm.jsx`), which is
+what shows up in the Google Sheet to tell responses apart.
 
 ## Run
 
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000 — click through, then type "mujeeb" (or any
-# name from data/guests.json) at the name screen
+# open http://localhost:3000 — tap the envelope, wait ~4.2s, you're in
 ```
-
-An unrecognized name shows an inline "we couldn't find that name" message
-with a chance to retry — not a dead-end page, since it's very likely just a
-typo.
 
 ## Where everything lives
 
 | What | File |
 |---|---|
 | Names, parents, all 6 events, dates, venues, notes | `data/wedding.config.js` |
-| Guest list + who is invited to which events (name-matched) | `data/guests.json` |
-| Name-matching logic | `data/guests.js` |
 | English / Urdu UI strings | `data/i18n.js` |
+| Envelope-opening video | `public/videos/envelope-open.mp4` |
 | RSVP submit handler | `app/api/rsvp/route.js` |
 | Background track | `public/audio/theme.mp3` |
 
 ## Still TODO (waiting on client)
 
-- [x] Bride & groom first names, monogram initials — **Urooj & Zameer**, monogram **UZ**
+- [x] Bride & groom first names, monogram initials — **Urooj & Zameer** (displayed as "Zameer & Urooj"), monogram is the client's Z&U gold crest
 - [x] Both sets of parents' names — from the formal Nikah card:
       bride is daughter of Mr. & Mrs. Mohammed Mujeeb, groom is son of Mr. & Mrs. Ahmed Mohiuddin,
-      blessing line is Alhaj Mohammad Yousuf / Late Syed Ahmed Ali
+      blessing line is Alhaj Mohammad Yousuf / Late Syed Ahmed Ali / Late Ghulam Dastagir
 - [x] Time + venue + full address + map link for **Mehndi, Nikkah, Valima** — taken from the three
       printed invitation cards he sent
 - [ ] Time + venue + full address for **Dua-e-Khair, Dolki, Mayoun** — no cards for these yet, only
@@ -69,7 +50,7 @@ typo.
 - [ ] Confirm exact Elite Banquet Hall street address — the card text was cramped ("11315 S Texas 6 h");
       entered as `11315 S Texas 6 Hwy, Sugar Land, TX 77498` (Hwy 6 runs through Sugar Land) — please double-check
 - [ ] Google Sheet link → paste into `RSVP_WEBHOOK_URL` in `.env.local`
-- [ ] Background mp3
+- [ ] Envelope video currently has a visible "Pika" watermark (free-tier AI export) — swap for the clean/paid version before launch
 
 ## Wiring the Google Sheet (2 min, once he sends the link)
 
@@ -81,7 +62,7 @@ function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RSVP");
   data.events.forEach(ev => {
     sheet.appendRow([
-      data.submittedAt, data.slug, data.name, data.phone, ev.name,
+      data.submittedAt, data.name, data.phone, ev.name,
       ev.attending ? "Attending" : "Declined", data.message
     ]);
   });
@@ -103,15 +84,3 @@ so the form is testable now.
 ## Deploy
 
 Push to GitHub → import on Vercel → add `RSVP_WEBHOOK_URL` as an env var. Done.
-
-## Adding or editing guests
-
-Add/edit an entry in `data/guests.json`:
-
-```json
-"jane-family": { "name": "Jane Family", "events": ["mehndi", "nikkah", "valima"] }
-```
-
-The object key is just an internal id (used for the RSVP local-storage key
-and the sheet's `slug` column) — it's never shown to the guest or matched
-against. Only `name` is matched against what they type..

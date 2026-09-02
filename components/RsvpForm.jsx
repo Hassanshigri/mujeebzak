@@ -1,13 +1,13 @@
 "use client";
 import { useMemo, useState } from "react";
 
-const STORAGE_KEY = (slug) => `rsvp:${slug}`;
+const STORAGE_KEY = "rsvp:submission";
 
-export default function RsvpForm({ t, guest, events }) {
+export default function RsvpForm({ t, events }) {
   const initial = useMemo(() => {
     let saved = null;
     if (typeof window !== "undefined") {
-      try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY(guest.slug)) || "null"); }
+      try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); }
       catch { saved = null; }
     }
     const attending = {};
@@ -20,7 +20,7 @@ export default function RsvpForm({ t, guest, events }) {
       attending,
       message: saved?.message || "",
     };
-  }, [guest.slug, events]);
+  }, [events]);
 
   const [name, setName] = useState(initial.name);
   const [phone, setPhone] = useState(initial.phone);
@@ -35,7 +35,6 @@ export default function RsvpForm({ t, guest, events }) {
     e.preventDefault();
     setStatus("sending");
     const payload = {
-      slug: guest.slug,
       name,
       phone,
       submittedAt: new Date().toISOString(),
@@ -53,7 +52,7 @@ export default function RsvpForm({ t, guest, events }) {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("bad status");
-      localStorage.setItem(STORAGE_KEY(guest.slug), JSON.stringify({ name, phone, attending, message }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, phone, attending, message }));
       setStatus("sent");
     } catch {
       setStatus("error");

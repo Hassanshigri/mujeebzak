@@ -14,7 +14,7 @@ export async function POST(request) {
     return Response.json({ ok: false, error: "invalid json" }, { status: 400 });
   }
 
-  if (!payload?.slug || !Array.isArray(payload?.events)) {
+  if (!payload?.name || !Array.isArray(payload?.events)) {
     return Response.json({ ok: false, error: "missing fields" }, { status: 400 });
   }
 
