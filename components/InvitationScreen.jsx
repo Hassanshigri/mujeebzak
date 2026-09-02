@@ -26,49 +26,49 @@ export default function InvitationScreen({ t }) {
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-maroondk/75 via-maroon/45 to-maroondk/80" />
 
-        <div className="relative z-10 py-20 px-6 max-w-2xl mx-auto text-center">
-          <Monogram initials={site.monogram} size={104} />
+        <div className="relative z-10 py-8 px-6 max-w-xl mx-auto text-center">
+          <Monogram initials={site.monogram} size={64} />
 
-          <p className={`font-arabic text-goldlt text-2xl sm:text-3xl mt-10 leading-loose ${glow}`}>
+          <p className={`font-arabic font-bold text-goldlt text-lg sm:text-xl mt-4 leading-snug ${glow}`}>
             {scripture.bismillah}
           </p>
 
-          <Divider className="my-10" />
+          <Divider className="my-4" />
 
           {families.blessingOf && (
             <>
-              <p className={`text-muted text-lg sm:text-xl ${glow}`}>{t.blessingsIntro}</p>
-              <p className={`font-display text-goldlt text-2xl sm:text-3xl mt-2 ${glow}`}>
+              <p className={`font-medium text-muted text-sm sm:text-base ${glow}`}>{t.blessingsIntro}</p>
+              <p className={`font-display font-semibold text-goldlt text-lg sm:text-xl mt-1 ${glow}`}>
                 {families.blessingOf}
               </p>
-              <p className={`text-muted text-base mt-8 ${glow}`}>{t.togetherWith}</p>
+              <p className={`font-medium text-muted text-xs sm:text-sm mt-3 ${glow}`}>{t.togetherWith}</p>
             </>
           )}
 
-          <p className={`font-caps text-cream text-xs sm:text-sm tracking-widest2 mt-3 leading-relaxed ${glow}`}>
+          <p className={`font-caps font-semibold text-cream text-[11px] sm:text-xs tracking-widest2 mt-2 leading-relaxed ${glow}`}>
             {families.brideParents}
           </p>
 
-          <p className={`text-muted text-lg sm:text-xl mt-8 leading-relaxed max-w-xl mx-auto ${glow}`}>
+          <p className={`font-medium text-muted text-sm sm:text-base mt-3 leading-snug max-w-md mx-auto ${glow}`}>
             {t.requestHonor}
           </p>
 
-          <div className="mt-10">
-            <p className={`font-display text-cream text-5xl sm:text-6xl ${glow}`}>{site.groomFirst}</p>
-            <p className={`font-display text-gold text-3xl my-2 ${glow}`}>&</p>
-            <p className={`font-display text-cream text-5xl sm:text-6xl ${glow}`}>{site.brideFirst}</p>
+          <div className="mt-4">
+            <p className={`font-display font-semibold text-cream text-3xl sm:text-4xl ${glow}`}>{site.groomFirst}</p>
+            <p className={`font-display font-semibold text-gold text-xl my-0.5 ${glow}`}>&</p>
+            <p className={`font-display font-semibold text-cream text-3xl sm:text-4xl ${glow}`}>{site.brideFirst}</p>
           </div>
 
-          <p className={`font-caps text-muted text-[10px] sm:text-xs tracking-widest2 mt-6 ${glow}`}>
+          <p className={`font-caps font-semibold text-muted text-[9px] sm:text-[10px] tracking-widest2 mt-3 ${glow}`}>
             {t.sonOf} {families.groomParents}
           </p>
 
-          <p className={`font-arabic text-goldlt text-2xl mt-12 ${glow}`}>{scripture.ayah}</p>
-          <p className={`text-muted italic text-base mt-2 ${glow}`}>{scripture.ayahTranslation}</p>
+          <p className={`font-arabic font-bold text-goldlt text-lg mt-5 ${glow}`}>{scripture.ayah}</p>
+          <p className={`font-medium text-muted italic text-xs mt-1 ${glow}`}>{scripture.ayahTranslation}</p>
 
-          <Divider className="my-10" />
+          <Divider className="my-4" />
 
-          <p className={`text-cream/90 text-lg leading-relaxed max-w-lg mx-auto ${glow}`}>
+          <p className={`font-medium text-cream/90 text-sm sm:text-base leading-snug max-w-sm mx-auto ${glow}`}>
             {notes.closingLine}
           </p>
         </div>
@@ -85,13 +85,10 @@ export default function InvitationScreen({ t }) {
               {t.yourCelebrations}
             </h2>
 
-            <p className="kicker mt-12 mb-4">{t.countingDown}</p>
-            <div className="panel corner inline-block px-8 sm:px-14 py-8">
-              <Countdown
-                targetIso={events[0].isoDate}
-                labels={{ days: t.days, hours: t.hours, minutes: t.minutes, seconds: t.seconds }}
-              />
-            </div>
+          </div>
+
+          <div className="mt-14">
+            <Countdown event={events[0]} t={t} />
           </div>
 
           <div className="mx-auto max-w-4xl grid sm:grid-cols-2 gap-8 mt-16 items-start">
