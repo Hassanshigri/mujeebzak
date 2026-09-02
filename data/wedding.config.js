@@ -82,11 +82,11 @@ export const notes = {
 };
 
 export const backgrounds = {
-  invitation: "/images/invitaiton-bg.png",
   closing: "/images/end-bg.png",       // "With love and gratitude" section
 };
 
-export const envelopeVideo = "/videos/envelope-open.mp4"; // opening screen, plays 4.2s then reveals the invitation
+export const envelopeVideo = "/videos/envelope-open.mp4";     // opening screen, plays 4.2s then reveals the invitation
+export const invitationVideo = "/videos/invitation-bg.mp4";   // loops behind the invitation text — no card, text sits right on it
 
 export const music = {
   // Drop an mp3 at public/audio/theme.mp3 (see public/audio/README.txt)

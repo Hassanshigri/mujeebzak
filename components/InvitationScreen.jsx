@@ -1,73 +1,76 @@
 "use client";
 import Image from "next/image";
-import { site, families, scripture, notes, backgrounds, events } from "@/data/wedding.config";
+import { site, families, scripture, notes, backgrounds, events, invitationVideo } from "@/data/wedding.config";
 import { Divider, Monogram } from "./Ornaments";
 import CalendarEventCard from "./CalendarEventCard";
 import Countdown from "./Countdown";
 import RsvpForm from "./RsvpForm";
 
+// Light text sitting directly on the video needs its own guaranteed
+// contrast — a dark drop-shadow, since there's no card behind it anymore.
+const glow = "[text-shadow:0_2px_16px_rgba(0,0,0,.75)]";
+
 export default function InvitationScreen({ t }) {
   return (
     <>
-      {/* Invitation */}
-      <section className="relative min-h-[100dvh] overflow-hidden">
-        <Image
-          src={backgrounds.invitation}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-maroon/60 via-maroon/30 to-maroon/70" />
+      {/* Invitation — text sits straight on the looping video, no card */}
+      <section className="relative min-h-[100dvh] overflow-hidden flex items-center justify-center">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src={invitationVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-maroondk/75 via-maroon/45 to-maroondk/80" />
 
-        <div className="relative z-10 py-16 sm:py-24 px-4">
-          <div className="mx-auto max-w-3xl panel corner px-6 sm:px-14 py-14 sm:py-20 text-center animate-glassIn">
-            <Monogram initials={site.monogram} size={104} />
+        <div className="relative z-10 py-20 px-6 max-w-2xl mx-auto text-center">
+          <Monogram initials={site.monogram} size={104} />
 
-            <p className="font-arabic text-maroon text-2xl sm:text-3xl mt-10 leading-loose">
-              {scripture.bismillah}
-            </p>
+          <p className={`font-arabic text-goldlt text-2xl sm:text-3xl mt-10 leading-loose ${glow}`}>
+            {scripture.bismillah}
+          </p>
 
-            <Divider className="my-10" />
+          <Divider className="my-10" />
 
-            {families.blessingOf && (
-              <>
-                <p className="text-mutedDk text-lg sm:text-xl">{t.blessingsIntro}</p>
-                <p className="font-display text-maroon text-2xl sm:text-3xl mt-2">
-                  {families.blessingOf}
-                </p>
-                <p className="text-mutedDk text-base mt-8">{t.togetherWith}</p>
-              </>
-            )}
+          {families.blessingOf && (
+            <>
+              <p className={`text-muted text-lg sm:text-xl ${glow}`}>{t.blessingsIntro}</p>
+              <p className={`font-display text-goldlt text-2xl sm:text-3xl mt-2 ${glow}`}>
+                {families.blessingOf}
+              </p>
+              <p className={`text-muted text-base mt-8 ${glow}`}>{t.togetherWith}</p>
+            </>
+          )}
 
-            <p className="font-caps text-ink text-xs sm:text-sm tracking-widest2 mt-3 leading-relaxed">
-              {families.brideParents}
-            </p>
+          <p className={`font-caps text-cream text-xs sm:text-sm tracking-widest2 mt-3 leading-relaxed ${glow}`}>
+            {families.brideParents}
+          </p>
 
-            <p className="text-mutedDk text-lg sm:text-xl mt-8 leading-relaxed max-w-xl mx-auto">
-              {t.requestHonor}
-            </p>
+          <p className={`text-muted text-lg sm:text-xl mt-8 leading-relaxed max-w-xl mx-auto ${glow}`}>
+            {t.requestHonor}
+          </p>
 
-            <div className="mt-10">
-              <p className="font-display text-ink text-5xl sm:text-6xl">{site.groomFirst}</p>
-              <p className="font-display text-golddk text-3xl my-2">&</p>
-              <p className="font-display text-ink text-5xl sm:text-6xl">{site.brideFirst}</p>
-            </div>
-
-            <p className="font-caps text-mutedDk text-[10px] sm:text-xs tracking-widest2 mt-6">
-              {t.sonOf} {families.groomParents}
-            </p>
-
-            <p className="font-arabic text-maroon text-2xl mt-12">{scripture.ayah}</p>
-            <p className="text-mutedDk italic text-base mt-2">{scripture.ayahTranslation}</p>
-
-            <Divider className="my-10" />
-
-            <p className="text-ink/80 text-lg leading-relaxed max-w-lg mx-auto">
-              {notes.closingLine}
-            </p>
+          <div className="mt-10">
+            <p className={`font-display text-cream text-5xl sm:text-6xl ${glow}`}>{site.groomFirst}</p>
+            <p className={`font-display text-gold text-3xl my-2 ${glow}`}>&</p>
+            <p className={`font-display text-cream text-5xl sm:text-6xl ${glow}`}>{site.brideFirst}</p>
           </div>
+
+          <p className={`font-caps text-muted text-[10px] sm:text-xs tracking-widest2 mt-6 ${glow}`}>
+            {t.sonOf} {families.groomParents}
+          </p>
+
+          <p className={`font-arabic text-goldlt text-2xl mt-12 ${glow}`}>{scripture.ayah}</p>
+          <p className={`text-muted italic text-base mt-2 ${glow}`}>{scripture.ayahTranslation}</p>
+
+          <Divider className="my-10" />
+
+          <p className={`text-cream/90 text-lg leading-relaxed max-w-lg mx-auto ${glow}`}>
+            {notes.closingLine}
+          </p>
         </div>
       </section>
 
