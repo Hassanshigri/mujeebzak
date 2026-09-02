@@ -45,8 +45,11 @@ export async function POST(request) {
   const url = process.env.RSVP_WEBHOOK_URL;
 
   if (!url) {
-    console.log("[RSVP — no webhook configured yet]", JSON.stringify(payload, null, 2));
-    return Response.json({ ok: true, stored: "console" });
+    console.error("[RSVP — RSVP_WEBHOOK_URL not configured]", JSON.stringify(payload, null, 2));
+    return Response.json(
+      { ok: false, error: "server not configured for sheet storage" },
+      { status: 500 },
+    );
   }
 
   // Apps Script cold-starts are usually only slow on the very first call —
