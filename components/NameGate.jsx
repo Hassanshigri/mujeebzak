@@ -42,7 +42,7 @@ export default function NameGate({ t, onFound }) {
           }}
           placeholder={t.nameGatePlaceholder}
           autoFocus
-          className="glass-input mt-8 w-full px-4 py-3 text-center text-lg"
+          className="solid-input mt-8 w-full px-4 py-3 text-center text-lg"
         />
 
         {notFound && (

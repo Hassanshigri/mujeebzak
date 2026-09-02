@@ -84,10 +84,10 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
               everywhere for reliable contrast, so give the words their own
               backing without turning it into a hard-edged card. */}
           <div
-            className="rounded-[2.5rem] backdrop-blur-md px-8 sm:px-16 py-14 sm:py-16 text-center"
+            className="rounded-[2.5rem] px-8 sm:px-16 py-14 sm:py-16 text-center"
             style={{
               background:
-                "radial-gradient(closest-side, rgba(26,5,8,.72), rgba(26,5,8,.4) 72%, transparent 100%)",
+                "radial-gradient(closest-side, rgba(26,5,8,.88), rgba(26,5,8,.6) 72%, transparent 100%)",
             }}
           >
             <p className="font-arabic text-goldlt text-3xl [text-shadow:0_2px_14px_rgba(0,0,0,.7)]">
@@ -100,7 +100,7 @@ export default function CelebrationsScreen({ t, guest, events, onBack }) {
               {notes.gratitude}
             </p>
             <p className="font-display text-goldlt text-4xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
-              {site.brideFirst} <span className="text-gold">&</span> {site.groomFirst}
+              {site.groomFirst} <span className="text-gold">&</span> {site.brideFirst}
             </p>
 
             <Divider className="my-12" />

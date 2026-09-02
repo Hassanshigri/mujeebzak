@@ -138,11 +138,11 @@ export const notes = {
 };
 
 export const backgrounds = {
-  gate: "/images/first.png",           // welcome screen
-  transition: "/images/second.png",    // shown ~1.5s while the doors finish opening
   invitation: "/images/invitaiton-bg.png",
   closing: "/images/end-bg.png",       // "With love and gratitude" section
 };
+
+export const envelopeVideo = "/videos/envelope-open.mp4"; // opening screen, plays 4.2s then reveals the invitation
 
 export const music = {
   // Drop an mp3 at public/audio/theme.mp3 (see public/audio/README.txt)

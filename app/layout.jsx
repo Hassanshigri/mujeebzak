@@ -2,10 +2,10 @@ import "./globals.css";
 import { site } from "@/data/wedding.config";
 
 export const metadata = {
-  title: `${site.brideFirst} & ${site.groomFirst} — Wedding Invitation`,
+  title: `${site.groomFirst} & ${site.brideFirst} — Wedding Invitation`,
   description: "A private invitation to our wedding celebrations. In shā' Allāh.",
   openGraph: {
-    title: `${site.brideFirst} & ${site.groomFirst}`,
+    title: `${site.groomFirst} & ${site.brideFirst}`,
     description: "A private invitation to our wedding celebrations.",
     type: "website",
   },

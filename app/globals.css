@@ -19,56 +19,43 @@ body {
 }
 
 /* ---- reusable pieces -------------------------------------------------- */
-/* Glassmorphism note: every surface below is translucent + blurred, so it
-   picks up whatever sits behind it (currently the wine gradient / geo-bg
-   pattern). Once real photos are dropped in — e.g. set a background-image
-   on .geo-bg, or on the section wrappers in GateScreen/CelebrationsScreen —
-   these panels will automatically read as frosted glass over the photo,
-   no other changes needed. */
+/* Solid, opaque surfaces — no backdrop-filter/translucency anywhere. Reads
+   more like printed cardstock (matching the client's wax-seal envelope
+   reference) than frosted glass. */
 @layer components {
   .kicker {
     @apply font-caps text-[10px] sm:text-xs uppercase tracking-widest2 text-gold/80;
   }
   .panel {
-    @apply relative rounded-2xl border border-white/15 backdrop-blur-md backdrop-saturate-150 overflow-hidden;
-    background-color: rgba(74, 18, 26, 0.35);
-    /* Static diagonal highlight, not an animated loop — real frosted glass
-       (iOS included) is a still material; it only "moves" because content
-       scrolls behind it, which backdrop-blur already handles for free. */
-    background-image:
-      linear-gradient(125deg, transparent 40%, rgba(255, 255, 255, 0.12) 52%, transparent 64%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-    background-repeat: no-repeat;
+    @apply relative rounded-2xl border border-gold/25 overflow-hidden;
+    background: linear-gradient(160deg, #2E0B10, #1A0508 85%);
     box-shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.9),
-                inset 0 1px 0 rgba(255, 255, 255, 0.22),
-                inset 0 0 40px rgba(201, 162, 75, 0.06);
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   .btn-gold {
-    @apply relative font-caps text-[11px] sm:text-xs uppercase tracking-widest2 text-goldlt
-           border border-white/25 rounded-full px-8 py-4 transition-all duration-300
-           backdrop-blur-md backdrop-saturate-150 active:scale-95;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
-    box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    @apply relative font-caps text-[11px] sm:text-xs uppercase tracking-widest2 text-ink
+           border border-gold rounded-full px-8 py-4 transition-all duration-300 active:scale-95;
+    background: linear-gradient(180deg, #E7CE95, #C9A24B);
+    box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.7);
   }
   .btn-gold:hover {
-    border-color: rgba(201, 162, 75, 0.7);
-    background-image: linear-gradient(180deg, rgba(201, 162, 75, 0.4), rgba(201, 162, 75, 0.12));
-    box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    background: linear-gradient(180deg, #F3E2B8, #D9B25C);
+    box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.75);
   }
-  .glass-pill {
-    @apply relative rounded-full border border-white/20 backdrop-blur-md backdrop-saturate-150
-           transition-all duration-300 active:scale-95;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
-    box-shadow: 0 8px 22px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  .solid-pill {
+    @apply relative rounded-full border border-gold/40 transition-all duration-300 active:scale-95;
+    background: rgba(46, 11, 16, 0.9);
+    box-shadow: 0 8px 22px -12px rgba(0, 0, 0, 0.65);
   }
-  .glass-pill:hover {
-    border-color: rgba(201, 162, 75, 0.7);
-    background-image: linear-gradient(180deg, rgba(201, 162, 75, 0.4), rgba(201, 162, 75, 0.12));
+  .solid-pill:hover {
+    border-color: rgba(201, 162, 75, 0.8);
+    background: rgba(74, 18, 26, 0.95);
   }
-  .glass-input {
-    @apply bg-white/5 border border-white/15 backdrop-blur-md rounded-xl
+  .solid-input {
+    @apply border border-gold/25 rounded-xl
            text-cream placeholder:text-muted/50 transition-all duration-300
-           focus:border-gold/70 focus:outline-none focus:bg-white/[0.08];
+           focus:border-gold focus:outline-none;
+    background-color: #2E0B10;
   }
   .hairline {
     @apply h-px w-full bg-gradient-to-r from-transparent via-gold/45 to-transparent;

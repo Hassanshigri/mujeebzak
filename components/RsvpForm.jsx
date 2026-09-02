@@ -80,7 +80,7 @@ export default function RsvpForm({ t, guest, events }) {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="glass-input mt-2 w-full px-4 py-3"
+              className="solid-input mt-2 w-full px-4 py-3"
               placeholder="…"
             />
           </div>
@@ -92,7 +92,7 @@ export default function RsvpForm({ t, guest, events }) {
               required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="glass-input mt-2 w-full px-4 py-3"
+              className="solid-input mt-2 w-full px-4 py-3"
               placeholder="…"
             />
           </div>
@@ -136,7 +136,7 @@ export default function RsvpForm({ t, guest, events }) {
             rows={3}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="glass-input mt-3 w-full px-4 py-3"
+            className="solid-input mt-3 w-full px-4 py-3"
             placeholder="…"
           />
         </div>
