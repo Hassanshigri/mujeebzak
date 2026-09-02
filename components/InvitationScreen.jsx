@@ -8,7 +8,7 @@ import RsvpForm from "./RsvpForm";
 
 // Light text sitting directly on the video needs its own guaranteed
 // contrast — a dark drop-shadow, since there's no card behind it anymore.
-const glow = "[text-shadow:0_2px_16px_rgba(0,0,0,.75)]";
+const glow = "[text-shadow:0_2px_20px_rgba(0,0,0,.85),0_0_40px_rgba(0,0,0,.6)]";
 
 export default function InvitationScreen({ t }) {
   return (
@@ -29,7 +29,7 @@ export default function InvitationScreen({ t }) {
         <div className="relative z-10 py-8 px-6 max-w-xl mx-auto text-center">
           <Monogram initials={site.monogram} size={64} />
 
-          <p className={`font-arabic font-bold text-goldlt text-lg sm:text-xl mt-4 leading-snug ${glow}`}>
+          <p className={`font-arabic font-bold text-goldlt text-xl sm:text-2xl mt-4 leading-snug ${glow}`}>
             {scripture.bismillah}
           </p>
 
@@ -37,38 +37,38 @@ export default function InvitationScreen({ t }) {
 
           {families.blessingOf && (
             <>
-              <p className={`font-medium text-muted text-sm sm:text-base ${glow}`}>{t.blessingsIntro}</p>
-              <p className={`font-display font-semibold text-goldlt text-lg sm:text-xl mt-1 ${glow}`}>
+              <p className={`font-medium text-muted text-base sm:text-lg mt-2 ${glow}`}>{t.blessingsIntro}</p>
+              <p className={`font-display font-semibold text-goldlt text-xl sm:text-2xl mt-2 ${glow}`}>
                 {families.blessingOf}
               </p>
-              <p className={`font-medium text-muted text-xs sm:text-sm mt-3 ${glow}`}>{t.togetherWith}</p>
+              <p className={`font-medium text-muted text-sm sm:text-base mt-4 ${glow}`}>{t.togetherWith}</p>
             </>
           )}
 
-          <p className={`font-caps font-semibold text-cream text-[11px] sm:text-xs tracking-widest2 mt-2 leading-relaxed ${glow}`}>
+          <p className={`font-caps font-semibold text-cream text-sm sm:text-base tracking-widest2 mt-3 leading-relaxed ${glow}`}>
             {families.brideParents}
           </p>
 
-          <p className={`font-medium text-muted text-sm sm:text-base mt-3 leading-snug max-w-md mx-auto ${glow}`}>
+          <p className={`font-medium text-muted text-base sm:text-lg mt-4 leading-snug max-w-md mx-auto ${glow}`}>
             {t.requestHonor}
           </p>
 
-          <div className="mt-4">
-            <p className={`font-display font-semibold text-cream text-3xl sm:text-4xl ${glow}`}>{site.groomFirst}</p>
-            <p className={`font-display font-semibold text-gold text-xl my-0.5 ${glow}`}>&</p>
-            <p className={`font-display font-semibold text-cream text-3xl sm:text-4xl ${glow}`}>{site.brideFirst}</p>
+          <div className="mt-6">
+            <p className={`font-romantic text-goldlt text-6xl sm:text-7xl drop-shadow-[0_4px_24px_rgba(201,162,75,0.5)] ${glow}`}>{site.groomFirst}</p>
+            <p className={`font-display font-semibold text-gold text-3xl sm:text-4xl my-2 ${glow}`}>&</p>
+            <p className={`font-romantic text-goldlt text-6xl sm:text-7xl drop-shadow-[0_4px_24px_rgba(201,162,75,0.5)] ${glow}`}>{site.brideFirst}</p>
           </div>
 
-          <p className={`font-caps font-semibold text-muted text-[9px] sm:text-[10px] tracking-widest2 mt-3 ${glow}`}>
+          <p className={`font-caps font-semibold text-muted text-xs sm:text-sm tracking-widest2 mt-4 ${glow}`}>
             {t.sonOf} {families.groomParents}
           </p>
 
-          <p className={`font-arabic font-bold text-goldlt text-lg mt-5 ${glow}`}>{scripture.ayah}</p>
-          <p className={`font-medium text-muted italic text-xs mt-1 ${glow}`}>{scripture.ayahTranslation}</p>
+          <p className={`font-arabic font-bold text-goldlt text-2xl sm:text-3xl mt-6 ${glow}`}>{scripture.ayah}</p>
+          <p className={`font-medium text-muted italic text-sm sm:text-base mt-2 ${glow}`}>{scripture.ayahTranslation}</p>
 
           <Divider className="my-4" />
 
-          <p className={`font-medium text-cream/90 text-sm sm:text-base leading-snug max-w-sm mx-auto ${glow}`}>
+          <p className={`font-medium text-cream/90 text-base sm:text-lg leading-snug max-w-sm mx-auto mt-4 ${glow}`}>
             {notes.closingLine}
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function InvitationScreen({ t }) {
         <div className="relative z-10 px-4 py-24">
           <div className="text-center">
             <p className="kicker">{t.preparedFor}</p>
-            <h2 className="font-display text-cream text-5xl sm:text-7xl mt-3">
+            <h2 className="section-title text-5xl sm:text-7xl mt-3">
               {t.yourCelebrations}
             </h2>
           </div>
@@ -126,13 +126,13 @@ export default function InvitationScreen({ t }) {
             <p className="font-arabic text-goldlt text-3xl [text-shadow:0_2px_14px_rgba(0,0,0,.7)]">
               {scripture.thanks}
             </p>
-            <h3 className="font-display text-cream text-4xl mt-6 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
+            <h3 className="section-title text-4xl sm:text-5xl mt-6">
               {t.withLove}
             </h3>
             <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed [text-shadow:0_2px_12px_rgba(0,0,0,.7)]">
               {notes.gratitude}
             </p>
-            <p className="font-display text-goldlt text-4xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
+            <p className="font-romantic text-goldlt text-5xl sm:text-6xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
               {site.groomFirst} <span className="text-gold">&</span> {site.brideFirst}
             </p>
 
@@ -143,7 +143,7 @@ export default function InvitationScreen({ t }) {
 
             <div className="mt-16">
               <Monogram initials={site.monogram} size={64} />
-              <p className="font-caps text-[9px] tracking-widest2 text-muted/50 mt-6">
+              <p className="font-romantic text-lg tracking-wide text-muted/70 mt-6">
                 © {site.year} {site.brideFirst} & {site.groomFirst}
               </p>
             </div>

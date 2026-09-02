@@ -129,7 +129,7 @@ export default function Countdown({ event, t }) {
         </div>
       </div>
 
-      <p className="font-script text-goldlt text-4xl sm:text-5xl mt-8">
+      <p className="font-romantic text-goldlt text-5xl sm:text-6xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
         {t.countdownTo} {event.name}
       </p>
 

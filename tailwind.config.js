@@ -28,6 +28,7 @@ module.exports = {
         arabic:  ["var(--font-arabic)", "Amiri", "serif"],
         urdu:    ["var(--font-urdu)", "Noto Nastaliq Urdu", "serif"],
         script:  ["\"Alex Brush\"", "cursive"],
+        romantic:["var(--font-romantic)", "Great Vibes", "cursive"],
       },
       letterSpacing: { widest2: "0.32em" },
       keyframes: {

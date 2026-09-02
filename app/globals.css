@@ -7,6 +7,7 @@
   --font-caps: "Cinzel", serif;
   --font-arabic: "Amiri", serif;
   --font-urdu: "Noto Nastaliq Urdu", serif;
+  --font-romantic: "Great Vibes", cursive;
 }
 
 html, body { height: 100%; }
@@ -24,6 +25,12 @@ body {
 @layer components {
   .kicker {
     @apply font-caps text-[10px] sm:text-xs uppercase tracking-widest2 text-gold/80;
+  }
+  .section-title {
+    @apply font-romantic text-goldlt drop-shadow-[0_2px_16px_rgba(0,0,0,0.7)];
+  }
+  .panel-title {
+    @apply font-romantic text-maroon;
   }
   .panel {
     @apply relative rounded-2xl border border-golddk/30 overflow-hidden;

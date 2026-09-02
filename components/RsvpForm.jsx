@@ -64,7 +64,7 @@ export default function RsvpForm({ t, events }) {
       <div className="panel corner px-6 sm:px-10 py-10 animate-glassIn">
         <div className="text-center">
           <p className="kicker">{t.rsvpChamber}</p>
-          <h3 className="font-display text-maroon text-4xl sm:text-5xl mt-2">
+          <h3 className="panel-title text-5xl sm:text-6xl mt-2">
             {t.kindlyRespond}
           </h3>
           <p className="text-mutedDk mt-4">{t.updatableLater}</p>

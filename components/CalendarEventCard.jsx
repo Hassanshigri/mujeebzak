@@ -30,7 +30,7 @@ export default function CalendarEventCard({ event, t }) {
           <span className="font-caps text-[9px] tracking-widest2 text-golddk mt-1">{weekday.toUpperCase()}</span>
         </div>
 
-        <h3 className="font-display text-maroon text-4xl sm:text-5xl mt-6">{event.name}</h3>
+        <h3 className="panel-title text-5xl sm:text-6xl mt-6">{event.name}</h3>
         <p className="text-ink/80 text-base leading-relaxed mt-3 max-w-sm mx-auto">{event.blurb}</p>
 
         <div className="mt-6 grid gap-3 text-left max-w-xs mx-auto">
