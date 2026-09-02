@@ -58,23 +58,12 @@ guest sees the same date regardless of their own device's timezone).
 
 ## Wiring the Google Sheet (2 min, once he sends the link)
 
-1. In the Sheet: **Extensions → Apps Script**, paste:
+The full script + step-by-step deploy instructions live in
+[`scripts/google-sheets-rsvp.gs`](scripts/google-sheets-rsvp.gs) — open that
+file and follow the comment at the top. Short version:
 
-```js
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RSVP");
-  data.events.forEach(ev => {
-    sheet.appendRow([
-      data.submittedAt, data.name, data.phone, ev.name,
-      ev.attending ? "Attending" : "Declined", data.message
-    ]);
-  });
-  return ContentService.createTextOutput(JSON.stringify({ ok: true }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-```
-
+1. Open the Sheet → **Extensions → Apps Script** → paste in
+   `scripts/google-sheets-rsvp.gs` → Save.
 2. **Deploy → New deployment → Web app**, Execute as *Me*, Access *Anyone*.
 3. Copy the `/exec` URL into `.env.local`:
 
@@ -82,8 +71,12 @@ function doPost(e) {
 RSVP_WEBHOOK_URL=https://script.google.com/macros/s/…/exec
 ```
 
-Until that's set, submissions return success and print to the server console —
-so the form is testable now.
+One row is appended per guest (Timestamp, Name, Phone, Nikkah, Valima,
+Duas & Wishes) — the script writes the header row itself on first run, on
+whatever sheet/tab is active, no manual renaming needed.
+
+Until `RSVP_WEBHOOK_URL` is set, submissions return success and print to the
+server console — so the form is testable right now.
 
 ## Deploy
 
