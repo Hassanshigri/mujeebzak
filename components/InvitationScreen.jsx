@@ -74,7 +74,7 @@ export default function InvitationScreen({ t }) {
         </div>
       </section>
 
-      {/* Events + countdown, calendar style */}
+      {/* Countdown, calendar style — its own section on the art-directed bg */}
       <section className="relative countdown-bg">
         <div className="absolute inset-0 bg-gradient-to-b from-maroon/85 via-maroondk/75 to-maroon/85" />
 
@@ -84,20 +84,32 @@ export default function InvitationScreen({ t }) {
             <h2 className="font-display text-cream text-5xl sm:text-7xl mt-3">
               {t.yourCelebrations}
             </h2>
-
           </div>
 
           <div className="mt-14">
             <Countdown event={events[0]} t={t} />
           </div>
+        </div>
+      </section>
 
-          <div className="mx-auto max-w-4xl grid sm:grid-cols-2 gap-8 mt-16 items-start">
+      {/* Events */}
+      <section className="relative geo-bg">
+        <div className="absolute inset-0 bg-gradient-to-b from-maroon via-maroondk to-maroon" />
+
+        <div className="relative z-10 px-4 py-24">
+          <div className="mx-auto max-w-4xl grid sm:grid-cols-2 gap-8 items-start">
             {events.map((ev) => (
               <CalendarEventCard key={ev.id} event={ev} t={t} />
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* rsvp */}
+      {/* RSVP */}
+      <section className="relative geo-bg">
+        <div className="absolute inset-0 bg-gradient-to-b from-maroondk via-maroon to-maroondk" />
+
+        <div className="relative z-10 px-4 py-24">
           <div className="mx-auto max-w-3xl">
             <RsvpForm t={t} events={events} />
           </div>
