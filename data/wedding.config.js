@@ -40,7 +40,7 @@ export const events = [
     id: "nikkah",
     name: "Nikkah",
     blurb:
-      "With gratitude to Allah, we invite you to witness the sacred vows that unite {BRIDE} and {GROOM}.",
+      "With gratitude to Allah, we invite you to witness the sacred vows that unite Zameer and Urooj.",
     date: "Friday, December 18, 2026",
     time: "4:00 PM",
     isoDate: "2026-12-18T16:00:00-06:00",
