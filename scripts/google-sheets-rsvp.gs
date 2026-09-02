@@ -22,11 +22,22 @@
  *      - Locally: add RSVP_WEBHOOK_URL=<url> to .env.local
  *      - On Vercel: Project → Settings → Environment Variables → add
  *        RSVP_WEBHOOK_URL, then redeploy.
- * 8. Submit a test RSVP on the site and confirm a row appears.
+ * 8. Submit a test RSVP on the site and check the "RSVP" tab (this script
+ *    creates it automatically the first time it runs — that's the one to
+ *    watch, not whatever tab happens to be open).
+ *
+ * UPDATING THE SCRIPT LATER
+ * Editing and saving Code.gs does NOT change what the live /exec URL
+ * runs. After any edit: Deploy → Manage deployments → pencil icon on the
+ * existing Web app deployment → Version: "New version" → Deploy. This
+ * keeps the same URL (no need to touch RSVP_WEBHOOK_URL again) but
+ * actually ships the new code.
  *
  * If you ever change the form's fields, update HEADERS and the
  * `values` array below to match — they must stay the same length/order.
  */
+
+const SHEET_NAME = "RSVP";
 
 const HEADERS = [
   "Timestamp",
@@ -38,7 +49,7 @@ const HEADERS = [
 ];
 
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const sheet = getRsvpSheet();
   ensureHeaders(sheet);
 
   const payload = JSON.parse(e.postData.contents);
@@ -65,6 +76,16 @@ function doPost(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// getActiveSheet() is unreliable when called from a web app trigger (no
+// live UI session) — it can silently resolve to whatever tab was last
+// open in someone's browser, not the tab you're checking. Target a
+// specific, named tab instead, creating it the first time so submissions
+// always land in the same predictable place.
+function getRsvpSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  return ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 }
 
 function ensureHeaders(sheet) {
