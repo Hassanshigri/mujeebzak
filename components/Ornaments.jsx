@@ -15,7 +15,7 @@ export function Monogram({ initials, size = 96 }) {
   return (
     <div className="relative mx-auto" style={{ width: size, height: size }}>
       <Image
-        src="/images/monogram.png"
+        src="/images/monogram.webp"
         alt={initials ? `${initials} monogram` : ""}
         fill
         sizes={`${size}px`}

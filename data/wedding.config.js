@@ -50,7 +50,7 @@ export const events = [
       "https://www.google.com/maps/search/?api=1&query=The+Spring+Wedding+and+Events+4999+Buller+Rd+Brookshire+TX+77423",
     dressCode: "",
     note: "Dinner to follow.",
-    image: "/images/nikah-bg.png",
+    image: "/images/nikah-bg.webp",
   },
   {
     id: "valima",
@@ -65,7 +65,7 @@ export const events = [
     mapUrl:
       "https://www.google.com/maps/search/?api=1&query=Chateau+Crystal+2517+S+Gessner+Rd+Houston+TX+77063",
     dressCode: "",
-    image: "/images/valima-bg.png",
+    image: "/images/valima-bg.webp",
   },
 ];
 
@@ -82,7 +82,15 @@ export const notes = {
 };
 
 export const backgrounds = {
-  closing: "/images/first-rep.png",    // "With love and gratitude" section
+  closing: "/images/first-rep.webp",    // "With love and gratitude" section
+};
+
+// Countdown section — art-directed per breakpoint (portrait crop on mobile,
+// wide crop on web); CSS media-query background-image so only the matching
+// file is ever downloaded.
+export const countdownBackgrounds = {
+  mobile: "/images/countdown-mob-bg.webp",
+  web: "/images/countdown-web-bd.webp",
 };
 
 export const envelopeVideo = "/videos/envelope-open.mp4";     // opening screen, plays 4.2s then reveals the invitation

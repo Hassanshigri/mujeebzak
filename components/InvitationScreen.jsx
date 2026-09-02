@@ -75,8 +75,8 @@ export default function InvitationScreen({ t }) {
       </section>
 
       {/* Events + countdown, calendar style */}
-      <section className="relative geo-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-maroon via-maroondk to-maroon" />
+      <section className="relative countdown-bg">
+        <div className="absolute inset-0 bg-gradient-to-b from-maroon/85 via-maroondk/75 to-maroon/85" />
 
         <div className="relative z-10 px-4 py-24">
           <div className="text-center">

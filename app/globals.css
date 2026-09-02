@@ -83,6 +83,21 @@ body {
   background-size: 100% 100%, 220px 220px;
 }
 
+/* Countdown section backdrop — art-directed per breakpoint. A real CSS
+   media query (not inline style) so the browser only ever fetches the one
+   background image that actually applies, never both. */
+.countdown-bg {
+  background-image: url("/images/countdown-mob-bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (min-width: 640px) {
+  .countdown-bg {
+    background-image: url("/images/countdown-web-bd.webp");
+  }
+}
+
 [dir="rtl"] { font-family: var(--font-urdu); }
 [dir="rtl"] .font-caps { letter-spacing: 0; }
 
