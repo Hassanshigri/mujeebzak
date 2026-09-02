@@ -17,6 +17,8 @@ module.exports = {
         cream:   "#F6EFE0",  // light text on maroon
         muted:   "#D9C3AE",  // secondary text on maroon
         mutedDk: "#7A5F49",  // secondary text on beige
+        danger:  "#9A3324",  // error state — brick red, stays in the warm palette
+        dangerbg:"#F7E6DF",  // soft error surface tint
         // Legacy aliases so any leftover bg-forest/bg-emerald/bg-moss keep working
         forest:  "#3A0A15",
         emerald: "#5C1120",
@@ -42,12 +44,27 @@ module.exports = {
           "60%":  { filter: "blur(2px)" },
           "100%": { opacity: 1, filter: "blur(0)", transform: "none" },
         },
+        // Small celebratory pop for the RSVP success checkmark.
+        popIn: {
+          "0%":   { opacity: 0, transform: "scale(0.5)" },
+          "60%":  { opacity: 1, transform: "scale(1.08)" },
+          "100%": { opacity: 1, transform: "scale(1)" },
+        },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "20%": { transform: "translateX(-6px)" },
+          "40%": { transform: "translateX(5px)" },
+          "60%": { transform: "translateX(-4px)" },
+          "80%": { transform: "translateX(3px)" },
+        },
       },
       animation: {
         fadeUp: "fadeUp 1s cubic-bezier(.2,.7,.3,1) both",
         fadeIn: "fadeIn 1.2s ease both",
         shimmer: "shimmer 3.5s ease-in-out infinite",
         glassIn: "glassIn 1.1s cubic-bezier(.2,.7,.3,1) both",
+        popIn: "popIn 0.6s cubic-bezier(.2,.7,.3,1) both",
+        shake: "shake 0.5s ease both",
       },
     },
   },

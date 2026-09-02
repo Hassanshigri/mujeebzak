@@ -31,6 +31,9 @@ export default function RsvpForm({ t, events }) {
   const toggle = (id, checked) =>
     setAttending((a) => ({ ...a, [id]: checked }));
 
+  const attendingNames = events.filter((ev) => attending[ev.id]).map((ev) => ev.name);
+  const firstName = name.trim().split(/\s+/)[0] || name;
+
   const submit = async (e) => {
     e.preventDefault();
     setStatus("sending");
@@ -58,6 +61,56 @@ export default function RsvpForm({ t, events }) {
       setStatus("error");
     }
   };
+
+  if (status === "sent") {
+    return (
+      <div className="mt-24">
+        <div
+          role="status"
+          aria-live="polite"
+          className="panel corner px-6 sm:px-10 py-14 sm:py-16 text-center animate-glassIn"
+        >
+          <div
+            className="mx-auto grid place-items-center h-20 w-20 rounded-full animate-popIn"
+            style={{ background: "linear-gradient(180deg, #E7CE95, #C9A24B)" }}
+          >
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path
+                d="M5 13l4.5 4.5L19 7.5"
+                stroke="#2B0810"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          <h3 className="panel-title text-5xl sm:text-6xl mt-6">{t.sentHeading}</h3>
+          <p className="text-ink text-lg mt-4">
+            Thank you, <span className="font-semibold">{firstName}</span> — {t.sent}
+          </p>
+
+          <p className="text-mutedDk mt-3 max-w-md mx-auto leading-relaxed">
+            {attendingNames.length > 0
+              ? `${t.joiningFor} ${attendingNames.join(" & ")}.`
+              : t.notJoining}
+          </p>
+
+          {message.trim() && (
+            <p className="text-mutedDk mt-2">{t.sentDuas}</p>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="kicker mt-8 underline underline-offset-4 decoration-gold/50 hover:text-goldlt transition-colors"
+          >
+            {t.editResponse}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={submit} className="mt-24">
@@ -140,6 +193,33 @@ export default function RsvpForm({ t, events }) {
           />
         </div>
 
+        {status === "error" && (
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="mt-8 max-w-lg mx-auto rounded-xl border border-danger/40 bg-dangerbg px-5 py-4 flex items-start gap-3 text-left animate-shake"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="text-danger shrink-0 mt-0.5"
+              aria-hidden
+            >
+              <circle cx="12" cy="12" r="9.25" stroke="currentColor" strokeWidth="1.8" />
+              <path d="M12 7.5v5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <circle cx="12" cy="16.5" r="1.1" fill="currentColor" />
+            </svg>
+            <div>
+              <p className="font-caps text-[10px] uppercase tracking-widest2 text-danger">
+                {t.errorHeading}
+              </p>
+              <p className="text-ink text-sm mt-1">{t.failed}</p>
+            </div>
+          </div>
+        )}
+
         <div className="text-center mt-10">
           <button
             type="submit"
@@ -148,9 +228,6 @@ export default function RsvpForm({ t, events }) {
           >
             {status === "sending" ? t.sending : t.confirm}
           </button>
-
-          {status === "sent" && <p className="text-golddk mt-5">{t.sent}</p>}
-          {status === "error" && <p className="text-red-700 mt-5">{t.failed}</p>}
 
           <p className="text-mutedDk text-sm mt-5">{t.returnNote}</p>
         </div>
