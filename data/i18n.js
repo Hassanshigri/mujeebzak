@@ -58,7 +58,6 @@ export const t = {
     joiningFor: "We can't wait to celebrate with you at the",
     notJoining: "We're sorry you can't make it — thank you so much for letting us know.",
     sentDuas: "Thank you for your kind wishes and duas.",
-    editResponse: "Edit your response",
     errorHeading: "Something went wrong",
     failed: "We couldn't save your response — please check your connection and try again.",
     returnNote: "Your private link allows you to return and update this response.",

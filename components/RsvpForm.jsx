@@ -99,14 +99,6 @@ export default function RsvpForm({ t, events }) {
           {message.trim() && (
             <p className="text-mutedDk mt-2">{t.sentDuas}</p>
           )}
-
-          <button
-            type="button"
-            onClick={() => setStatus("idle")}
-            className="kicker mt-8 underline underline-offset-4 decoration-gold/50 hover:text-goldlt transition-colors"
-          >
-            {t.editResponse}
-          </button>
         </div>
       </div>
     );
