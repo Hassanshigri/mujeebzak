@@ -76,8 +76,6 @@ export default function InvitationScreen({ t }) {
 
       {/* Countdown, calendar style — its own section on the art-directed bg */}
       <section className="relative countdown-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-maroon/85 via-maroondk/75 to-maroon/85" />
-
         <div className="relative z-10 px-4 py-24">
           <div className="text-center">
             <p className="kicker">{t.preparedFor}</p>
