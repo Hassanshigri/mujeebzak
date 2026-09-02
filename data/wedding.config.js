@@ -82,7 +82,7 @@ export const notes = {
 };
 
 export const backgrounds = {
-  closing: "/images/end-bg.png",       // "With love and gratitude" section
+  closing: "/images/first-rep.png",    // "With love and gratitude" section
 };
 
 export const envelopeVideo = "/videos/envelope-open.mp4";     // opening screen, plays 4.2s then reveals the invitation

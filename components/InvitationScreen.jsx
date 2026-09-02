@@ -123,7 +123,7 @@ export default function InvitationScreen({ t }) {
             <h3 className="font-display text-cream text-4xl mt-6 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
               {t.withLove}
             </h3>
-            <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed">
+            <p className="text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed [text-shadow:0_2px_12px_rgba(0,0,0,.7)]">
               {notes.gratitude}
             </p>
             <p className="font-display text-goldlt text-4xl mt-8 [text-shadow:0_2px_16px_rgba(0,0,0,.7)]">
@@ -133,7 +133,7 @@ export default function InvitationScreen({ t }) {
             <Divider className="my-12" />
 
             <p className="kicker">{t.gentleNote}</p>
-            <p className="text-cream/85 mt-3 max-w-md mx-auto">{notes.giftNote}</p>
+            <p className="text-cream/85 mt-3 max-w-md mx-auto [text-shadow:0_2px_12px_rgba(0,0,0,.7)]">{notes.giftNote}</p>
 
             <div className="mt-16">
               <Monogram initials={site.monogram} size={64} />
