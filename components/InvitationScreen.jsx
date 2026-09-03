@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { site, families, scripture, notes, backgrounds, events, invitationVideo } from "@/data/wedding.config";
 import { Divider, Monogram } from "./Ornaments";
 import CalendarEventCard from "./CalendarEventCard";
@@ -11,6 +12,13 @@ import RsvpForm from "./RsvpForm";
 const glow = "[text-shadow:0_2px_20px_rgba(0,0,0,.85),0_0_40px_rgba(0,0,0,.6)]";
 
 export default function InvitationScreen({ t }) {
+  // A plain link shows every event. Adding ?event=nikkah (or any other
+  // event id) narrows the whole page — countdown, event cards, RSVP —
+  // to just that one, for guests only invited to part of the wedding.
+  const requested = useSearchParams().get("event");
+  const filtered = requested ? events.filter((ev) => ev.id === requested) : events;
+  const visibleEvents = filtered.length > 0 ? filtered : events;
+
   return (
     <>
       {/* Invitation — text sits straight on the looping video, no card */}
@@ -85,7 +93,7 @@ export default function InvitationScreen({ t }) {
           </div>
 
           <div className="mt-14">
-            <Countdown event={events[0]} t={t} />
+            <Countdown event={visibleEvents[0]} t={t} />
           </div>
         </div>
       </section>
@@ -93,8 +101,12 @@ export default function InvitationScreen({ t }) {
       {/* Events */}
       <section className="relative events-bg">
         <div className="relative z-10 px-4 py-24">
-          <div className="mx-auto max-w-4xl grid sm:grid-cols-2 gap-8 items-start">
-            {events.map((ev) => (
+          <div
+            className={`mx-auto grid gap-8 items-start ${
+              visibleEvents.length > 1 ? "max-w-4xl sm:grid-cols-2" : "max-w-md"
+            }`}
+          >
+            {visibleEvents.map((ev) => (
               <CalendarEventCard key={ev.id} event={ev} t={t} />
             ))}
           </div>
@@ -105,7 +117,7 @@ export default function InvitationScreen({ t }) {
       <section className="relative events-bg">
         <div className="relative z-10 px-4 py-24">
           <div className="mx-auto max-w-3xl">
-            <RsvpForm t={t} events={events} />
+            <RsvpForm t={t} events={visibleEvents} />
           </div>
         </div>
       </section>
